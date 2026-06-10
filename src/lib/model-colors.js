@@ -1,20 +1,63 @@
-// Colour remaps for FBX models whose materials lost their colours at export.
+import * as THREE from 'three';
+
+// Material restoration for FBX models whose looks were lost at export.
 // The source scenes used renderer-specific shaders (Maya aiStandardSurface /
-// Blender node materials) that FBX cannot carry, so those models arrive with
-// flat grey diffuse. The original material names survive, though, so colours
-// are reassigned by name. The .glb models (and SEO.fbx, which uses vertex
+// Blender Cycles nodes) that FBX cannot carry, so those models arrive with
+// flat grey diffuse. The original material names survive, so looks are
+// reassigned by name. The .glb models (and SEO.fbx, which uses vertex
 // colours) have no palette here — they keep their authored colours.
+//
+// Globe_Digital values come from the original .blend (a holographic earth):
+// emissive night-lights continents from the blend's packed earth texture,
+// a land/ocean alpha mask, glowing green orbit rings and data cubes, and a
+// translucent holo-grid shell.
 //
 // First matching rule wins. Remove a model's palette entirely if it is ever
 // replaced with a properly-coloured export.
 
+const texLoader = new THREE.TextureLoader();
+const texCache = {};
+
+function tex(url, colorSpace) {
+  if (!texCache[url]) {
+    texCache[url] = texLoader.load(url);
+    if (colorSpace) texCache[url].colorSpace = colorSpace;
+  }
+  return texCache[url];
+}
+
 const PALETTES = {
   'Globe_Digital.fbx': [
-    { match: /continents\+holo/i, props: { color: '#f1f5f2' } }, // inner base sphere
-    { match: /continents/i, props: { color: '#1c5937' } }, // landmasses — brand green
-    { match: /holo grid/i, props: { color: '#137547', transparent: true, opacity: 0.55 } },
-    { match: /edge wear/i, props: { color: '#b48d1a' } }, // floating cubes — gold accent
-    { match: /material/i, props: { color: '#9aa39e' } }, // orbit rings
+    {
+      // inner base sphere — opaque earth layer under the grid shell
+      match: /continents\+holo/i,
+      props: { color: '#04100a', emissive: '#ffffff', emissiveIntensity: 0.55 },
+      textures: { emissiveMap: ['/models/globe-emission.jpg', 'srgb'] },
+    },
+    {
+      // outer continents shell — emissive night-lights land, transparent ocean
+      match: /continents/i,
+      props: { color: '#000000', emissive: '#ffffff', emissiveIntensity: 1.0, transparent: true },
+      textures: {
+        emissiveMap: ['/models/globe-emission.jpg', 'srgb'],
+        alphaMap: ['/models/globe-alpha.jpg'],
+      },
+    },
+    {
+      // holographic grid shell (procedural in the blend — approximated)
+      match: /holo grid/i,
+      props: { color: '#000000', emissive: '#3dc63d', emissiveIntensity: 0.55, transparent: true, opacity: 0.22 },
+    },
+    {
+      // floating data cubes — bright green emission (0.08, 1.00, 0.09 linear)
+      match: /edge wear/i,
+      props: { color: '#02140a', emissive: '#4dff52', emissiveIntensity: 1.1 },
+    },
+    {
+      // orbit rings — green emission (0.05, 0.56, 0.05 linear)
+      match: /material/i,
+      props: { color: '#000000', emissive: '#3dc63d', emissiveIntensity: 1.0 },
+    },
   ],
   // Single mesh + single material, so the tri-colour Google Ads logo can only
   // be one solid colour without a re-export — Google blue reads best.
@@ -43,9 +86,13 @@ export function applyModelColors(root, src) {
       if (!m) continue;
       const rule = palette.find((r) => r.match.test(m.name || ''));
       if (!rule) continue;
-      const { color, ...rest } = rule.props;
+      const { color, emissive, ...rest } = rule.props;
       if (color && m.color) m.color.set(color);
+      if (emissive && m.emissive) m.emissive.set(emissive);
       Object.assign(m, rest);
+      for (const [slot, [url, space]] of Object.entries(rule.textures || {})) {
+        m[slot] = tex(url, space === 'srgb' ? THREE.SRGBColorSpace : undefined);
+      }
       m.needsUpdate = true;
     }
   });
