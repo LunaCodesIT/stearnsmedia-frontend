@@ -47,9 +47,9 @@ export function About() {
     <section
       ref={sectionRef}
       id="about-section"
-      className="relative w-full bg-stearns-green py-20 lg:py-28 overflow-hidden"
+      className="relative w-full bg-stearns-dark py-20 lg:py-28 overflow-hidden"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(180,141,26,0.15),transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(180,141,26,0.10),transparent_60%)]" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <p className="text-stearns-gold text-xs font-bold tracking-[0.3em] uppercase mb-5">

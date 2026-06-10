@@ -38,7 +38,9 @@ export function Contact() {
       id="contact"
       className="relative w-full bg-stearns-dark py-20 lg:py-28 overflow-hidden"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_100%,rgba(28,89,55,0.25),transparent_60%)]" />
+      {/* Same black-to-green wash as the hero */}
+      <div className="absolute inset-0 bg-gradient-to-br from-stearns-dark via-[#0f2e1c] to-stearns-dark" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_60%_50%,rgba(28,89,55,0.35),transparent_70%)]" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">

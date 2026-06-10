@@ -40,7 +40,9 @@ export function WebsiteDesign() {
       id="web-design-section"
       className="relative w-full bg-stearns-dark flex flex-col lg:flex-row py-16 lg:py-24 overflow-hidden"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_70%_at_25%_50%,rgba(28,89,55,0.22),transparent_65%)]" />
+      {/* Same black-to-green wash as the hero */}
+      <div className="absolute inset-0 bg-gradient-to-br from-stearns-dark via-[#0f2e1c] to-stearns-dark" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_60%_50%,rgba(28,89,55,0.35),transparent_70%)]" />
 
       {/* Empty anchor marking where the traveling globe comes to rest */}
       <div

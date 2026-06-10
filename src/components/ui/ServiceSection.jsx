@@ -12,6 +12,7 @@ export function ServiceSection({
   paragraphs = [],
   loading = false,
   reverse = false,
+  heroBackground = false,
   children,
 }) {
   const sectionRef = useRef(null);
@@ -45,12 +46,20 @@ export function ServiceSection({
       id={id}
       className="relative w-full bg-stearns-dark py-20 lg:py-28 overflow-hidden"
     >
-      <div
-        className="absolute inset-0"
-        style={{
-          background: `radial-gradient(ellipse 50% 70% at ${reverse ? '25%' : '75%'} 50%, rgba(28,89,55,0.22), transparent 65%)`,
-        }}
-      />
+      {heroBackground ? (
+        <>
+          {/* Same black-to-green wash as the hero */}
+          <div className="absolute inset-0 bg-gradient-to-br from-stearns-dark via-[#0f2e1c] to-stearns-dark" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_60%_50%,rgba(28,89,55,0.35),transparent_70%)]" />
+        </>
+      ) : (
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `radial-gradient(ellipse 50% 70% at ${reverse ? '25%' : '75%'} 50%, rgba(28,89,55,0.22), transparent 65%)`,
+          }}
+        />
+      )}
 
       <div
         className={`relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-10 lg:gap-16 items-center ${

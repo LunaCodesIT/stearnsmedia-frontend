@@ -12,6 +12,7 @@ export function Analytics() {
       title={title || 'Analytics & Conversion Tracking'}
       paragraphs={paragraphs}
       loading={loading}
+      heroBackground
     >
       <SectionModel
         src="/models/Google_Analytics.glb"

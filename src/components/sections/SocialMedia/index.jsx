@@ -13,6 +13,7 @@ export function SocialMedia() {
       paragraphs={paragraphs}
       loading={loading}
       reverse
+      heroBackground
     >
       <SectionModel
         src="/models/SocialMediaIcons.glb"
