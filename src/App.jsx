@@ -3,6 +3,7 @@ import { Navbar } from '@/components/ui/Navbar';
 import { JourneyCanvas } from '@/components/three/JourneyCanvas';
 import { Hero } from '@/components/sections/Hero';
 import { GoogleAds } from '@/components/sections/GoogleAds';
+import { SocialMedia } from '@/components/sections/SocialMedia';
 
 export default function App() {
   useLenis();
@@ -13,6 +14,7 @@ export default function App() {
       <JourneyCanvas />
       <Hero />
       <GoogleAds />
+      <SocialMedia />
     </div>
   );
 }
