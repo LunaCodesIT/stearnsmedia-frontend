@@ -10,6 +10,7 @@ import { Seo } from '@/components/sections/Seo';
 import { Analytics } from '@/components/sections/Analytics';
 import { About } from '@/components/sections/About';
 import { Contact } from '@/components/sections/Contact';
+import { Footer } from '@/components/sections/Footer';
 
 export default function App() {
   useLenis();
@@ -27,6 +28,7 @@ export default function App() {
       <Analytics />
       <About />
       <Contact />
+      <Footer />
     </div>
   );
 }
