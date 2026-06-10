@@ -8,6 +8,7 @@ import { GraphicDesign } from '@/components/sections/GraphicDesign';
 import { WebsiteDesign } from '@/components/sections/WebsiteDesign';
 import { Seo } from '@/components/sections/Seo';
 import { Analytics } from '@/components/sections/Analytics';
+import { About } from '@/components/sections/About';
 
 export default function App() {
   useLenis();
@@ -23,6 +24,7 @@ export default function App() {
       <WebsiteDesign />
       <Seo />
       <Analytics />
+      <About />
     </div>
   );
 }
