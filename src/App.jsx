@@ -2,6 +2,7 @@ import { useLenis } from '@/hooks/useLenis';
 import { Navbar } from '@/components/ui/Navbar';
 import { JourneyCanvas } from '@/components/three/JourneyCanvas';
 import { Hero } from '@/components/sections/Hero';
+import { GoogleAds } from '@/components/sections/GoogleAds';
 
 export default function App() {
   useLenis();
@@ -11,6 +12,7 @@ export default function App() {
       <Navbar />
       <JourneyCanvas />
       <Hero />
+      <GoogleAds />
     </div>
   );
 }
