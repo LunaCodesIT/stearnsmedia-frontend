@@ -16,7 +16,7 @@ export default function App() {
   useLenis();
 
   return (
-    <div className="min-h-screen bg-stearns-light">
+    <div className="min-h-screen bg-stearns-dark">
       <Navbar />
       <JourneyCanvas />
       <Hero />

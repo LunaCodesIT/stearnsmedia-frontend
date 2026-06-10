@@ -38,9 +38,9 @@ export function WebsiteDesign() {
     <section
       ref={sectionRef}
       id="web-design-section"
-      className="relative w-full bg-stearns-light flex flex-col lg:flex-row py-16 lg:py-24 overflow-hidden"
+      className="relative w-full bg-stearns-dark flex flex-col lg:flex-row py-16 lg:py-24 overflow-hidden"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_70%_at_25%_50%,rgba(28,89,55,0.07),transparent_65%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_70%_at_25%_50%,rgba(28,89,55,0.22),transparent_65%)]" />
 
       {/* Empty anchor marking where the traveling globe comes to rest */}
       <div
@@ -55,9 +55,9 @@ export function WebsiteDesign() {
           Web Design &amp; Development
         </p>
 
-        <h2 className="font-black text-stearns-ink font-display mb-6" style={{ fontSize: 'clamp(2.2rem,4.5vw,4rem)' }}>
+        <h2 className="font-black text-white font-display mb-6" style={{ fontSize: 'clamp(2.2rem,4.5vw,4rem)' }}>
           <MaskLine scrollTriggered>{heading.split(' ').slice(0, 2).join(' ')}</MaskLine>
-          <MaskLine scrollTriggered delay={0.1} className="text-stearns-green">
+          <MaskLine scrollTriggered delay={0.1} className="text-stearns-green-light">
             {heading.split(' ').slice(2).join(' ') || 'that performs.'}
           </MaskLine>
         </h2>
@@ -65,12 +65,12 @@ export function WebsiteDesign() {
         <div ref={copyRef} className="space-y-4 max-w-md mx-auto lg:mx-0">
           {loading ? (
             <>
-              <div className="h-4 rounded bg-stearns-ink/5 animate-pulse" />
-              <div className="h-4 rounded bg-stearns-ink/5 animate-pulse w-5/6" />
+              <div className="h-4 rounded bg-white/10 animate-pulse" />
+              <div className="h-4 rounded bg-white/10 animate-pulse w-5/6" />
             </>
           ) : (
             paragraphs.map((text) => (
-              <p key={text.slice(0, 40)} className="text-stearns-ink/60 leading-relaxed">
+              <p key={text.slice(0, 40)} className="text-white/60 leading-relaxed">
                 {text}
               </p>
             ))

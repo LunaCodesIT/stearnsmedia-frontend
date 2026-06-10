@@ -35,11 +35,11 @@ export function Hero() {
     <section
       ref={sectionRef}
       id="hero-section"
-      className="relative w-full h-dvh min-h-[560px] bg-stearns-light overflow-hidden flex items-center"
+      className="relative w-full h-dvh min-h-[560px] bg-stearns-dark overflow-hidden flex items-center"
     >
-      {/* Background washes */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-stearns-light to-[#eef5f0]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_65%_45%,rgba(28,89,55,0.10),transparent_70%)]" />
+      {/* Black-to-green gradient — same idiom as the reference hero */}
+      <div className="absolute inset-0 bg-gradient-to-br from-stearns-dark via-[#0f2e1c] to-stearns-dark" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_60%_50%,rgba(28,89,55,0.35),transparent_70%)]" />
 
       {/*
         Empty anchor marking where the 3D globe rests at the start of its
@@ -62,18 +62,18 @@ export function Hero() {
             Digital Growth Partner
           </p>
 
-          <h1 className="mb-7 font-black text-stearns-ink font-display">
+          <h1 className="mb-7 font-black text-white font-display">
             <MaskLine delay={0.3} className="text-[clamp(2.8rem,7vw,5.2rem)]">
               Smarter Marketing.
             </MaskLine>
-            <MaskLine delay={0.44} className="text-[clamp(2.8rem,7vw,5.2rem)] text-stearns-green">
+            <MaskLine delay={0.44} className="text-[clamp(2.8rem,7vw,5.2rem)] text-stearns-green-light">
               Better Results.
             </MaskLine>
           </h1>
 
           <p
             ref={subRef}
-            className="text-stearns-ink/60 text-base sm:text-lg leading-relaxed mb-9 opacity-0 max-w-md mx-auto md:mx-0"
+            className="text-white/65 text-base sm:text-lg leading-relaxed mb-9 opacity-0 max-w-md mx-auto md:mx-0"
           >
             Full-service digital growth partner — SEO, Ads, Social, Web &amp; More.
           </p>
@@ -100,7 +100,7 @@ export function Hero() {
         ref={arrowRef}
         onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
         aria-label="Scroll down"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-stearns-ink/35 hover:text-stearns-green transition-colors duration-300 opacity-0"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-white/35 hover:text-stearns-green-light transition-colors duration-300 opacity-0"
       >
         <span className="text-[10px] tracking-[0.25em] uppercase font-medium">Scroll</span>
         <ArrowDown size={18} className="animate-bounce" />

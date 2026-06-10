@@ -1,11 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  /* Stearns Media palette — taken from the live site */
+  /* Stearns Media palette — greens/gold from the live site, on a dark theme */
   --color-stearns-green: #1c5937;
   --color-stearns-green-mid: #137547;
   --color-stearns-green-deep: #0e5735;
+  --color-stearns-green-light: #3fae74; /* accent text on dark backgrounds */
   --color-stearns-gold: #b48d1a;
+  --color-stearns-dark: #121412; /* near-black with a green cast */
   --color-stearns-light: #fbfbfb;
   --color-stearns-ink: #111111;
 
@@ -23,8 +25,8 @@
   }
 
   body {
-    background-color: var(--color-stearns-light);
-    color: var(--color-stearns-ink);
+    background-color: var(--color-stearns-dark);
+    color: #ffffff;
     font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
     overflow-x: hidden;
   }
@@ -35,7 +37,7 @@
 
   @media (pointer: fine) {
     ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: var(--color-stearns-light); }
+    ::-webkit-scrollbar-track { background: var(--color-stearns-dark); }
     ::-webkit-scrollbar-thumb { background: var(--color-stearns-green); border-radius: 3px; }
   }
 

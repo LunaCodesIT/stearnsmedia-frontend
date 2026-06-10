@@ -43,12 +43,12 @@ export function ServiceSection({
     <section
       ref={sectionRef}
       id={id}
-      className="relative w-full bg-stearns-light py-20 lg:py-28 overflow-hidden"
+      className="relative w-full bg-stearns-dark py-20 lg:py-28 overflow-hidden"
     >
       <div
         className="absolute inset-0"
         style={{
-          background: `radial-gradient(ellipse 50% 70% at ${reverse ? '25%' : '75%'} 50%, rgba(28,89,55,0.06), transparent 65%)`,
+          background: `radial-gradient(ellipse 50% 70% at ${reverse ? '25%' : '75%'} 50%, rgba(28,89,55,0.22), transparent 65%)`,
         }}
       />
 
@@ -64,12 +64,12 @@ export function ServiceSection({
           </p>
 
           <h2
-            className="font-black text-stearns-ink font-display mb-6"
+            className="font-black text-white font-display mb-6"
             style={{ fontSize: 'clamp(2rem,4vw,3.4rem)' }}
           >
             <MaskLine scrollTriggered>{titleWords.slice(0, splitAt).join(' ')}</MaskLine>
             {titleWords.length > splitAt && (
-              <MaskLine scrollTriggered delay={0.1} className="text-stearns-green">
+              <MaskLine scrollTriggered delay={0.1} className="text-stearns-green-light">
                 {titleWords.slice(splitAt).join(' ')}
               </MaskLine>
             )}
@@ -78,13 +78,13 @@ export function ServiceSection({
           <div ref={copyRef} className="space-y-4 max-w-xl mx-auto lg:mx-0">
             {loading ? (
               <>
-                <div className="h-4 rounded bg-stearns-ink/5 animate-pulse" />
-                <div className="h-4 rounded bg-stearns-ink/5 animate-pulse w-5/6 mx-auto lg:mx-0" />
-                <div className="h-4 rounded bg-stearns-ink/5 animate-pulse w-2/3 mx-auto lg:mx-0" />
+                <div className="h-4 rounded bg-white/10 animate-pulse" />
+                <div className="h-4 rounded bg-white/10 animate-pulse w-5/6 mx-auto lg:mx-0" />
+                <div className="h-4 rounded bg-white/10 animate-pulse w-2/3 mx-auto lg:mx-0" />
               </>
             ) : (
               paragraphs.map((text) => (
-                <p key={text.slice(0, 40)} className="text-stearns-ink/60 leading-relaxed">
+                <p key={text.slice(0, 40)} className="text-white/60 leading-relaxed">
                   {text}
                 </p>
               ))

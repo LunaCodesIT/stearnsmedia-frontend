@@ -9,7 +9,7 @@ const FOOTER_LINKS = [
 
 export function Footer() {
   return (
-    <footer className="relative w-full bg-stearns-ink text-white">
+    <footer className="relative w-full bg-[#0c0d0c] border-t border-white/10 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Logo — served from the live site's media library */}
