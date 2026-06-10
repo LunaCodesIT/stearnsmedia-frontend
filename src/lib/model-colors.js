@@ -69,18 +69,32 @@ const PALETTES = {
   ],
   // Single mesh + single material, so the tri-colour Google Ads logo can only
   // be one solid colour without a re-export — Google blue reads best.
-  'Google_Ads.fbx': [{ match: /.*/, props: { color: '#4285f4' } }],
-  'Graphics_Tablet.fbx': [
+  'Google_Ads.glb': [{ match: /.*/, props: { color: '#4285f4' } }],
+  'Graphics_Tablet.glb': [
     { match: /rubber/i, props: { color: '#1a1a1a' } },
     { match: /phong1\b/i, props: { color: '#d9ded9' } }, // screen face
     { match: /phong7/i, props: { color: '#1c5937' } }, // brand-green accent
     { match: /lambert/i, props: { color: '#404040' } },
     { match: /.*/, props: { color: '#2e2e2e' } }, // graphite body
   ],
-  'Graphics_Card_Design.fbx': [
+  'Graphics_Card_Design.glb': [
     { match: /plastic whit/i, props: { color: '#f2f2f2' } }, // card stock
     { match: /ribbon/i, props: { color: '#b48d1a' } }, // gold ribbon
     { match: /.*/, props: { color: '#1c5937' } }, // printed faces — brand green
+  ],
+  // A 3D Google search page. The FBX's vertex colours flattened to white in
+  // the Blender FBX→GLB conversion, but the logo is split into per-colour
+  // materials, so the official Google colours are assigned by name.
+  'SEO.glb': [
+    { match: /google_red/i, props: { color: '#ea4335' } },
+    { match: /google_yellow/i, props: { color: '#fbbc05' } },
+    { match: /google_blue/i, props: { color: '#4285f4' } },
+    { match: /aistandardsurface7/i, props: { color: '#34a853' } }, // logo green
+    { match: /aistandardsurface8/i, props: { color: '#ffffff' } }, // page board
+    { match: /button_color/i, props: { color: '#dfe1e5' } },
+    { match: /textcolor/i, props: { color: '#5f6368' } },
+    { match: /lambert/i, props: { color: '#5f6368' } }, // magnifier
+    { match: /aiambientocclusion/i, props: { color: '#f1f3f4' } },
   ],
 };
 

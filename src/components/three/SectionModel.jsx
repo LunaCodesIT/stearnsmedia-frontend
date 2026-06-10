@@ -7,7 +7,11 @@ import { gsap, ScrollTrigger } from '@/lib/gsap';
 import { fitModelToSize, isLowEnd } from '@/lib/three-utils';
 import { applyModelColors } from '@/lib/model-colors';
 
-const IDLE_SPIN_SPEED = 0.3; // rad/s
+// Gentle oscillation instead of a full spin: most section models are flat,
+// sign-like shapes (logos, boards) that show a blank back for half of every
+// rotation — swaying keeps the face toward the viewer.
+const SWAY_SPEED = 0.45; // rad/s of the sine phase
+const SWAY_AMPLITUDE = 0.4; // rad each way
 
 function SpinningModel({ object, fit, rotation, entranceProgress }) {
   const spinRef = useRef(null);
@@ -17,8 +21,10 @@ function SpinningModel({ object, fit, rotation, entranceProgress }) {
     fitModelToSize(object, fit);
   }, [object, fit]);
 
-  useFrame((_, delta) => {
-    if (spinRef.current) spinRef.current.rotation.y += delta * IDLE_SPIN_SPEED;
+  useFrame(({ clock }) => {
+    if (spinRef.current) {
+      spinRef.current.rotation.y = Math.sin(clock.getElapsedTime() * SWAY_SPEED) * SWAY_AMPLITUDE;
+    }
     if (scaleRef.current) {
       // Entrance: scale + rise driven by the section's ScrollTrigger tween
       const p = entranceProgress.current;

@@ -17,6 +17,8 @@ export function SocialMedia() {
     >
       <SectionModel
         src="/models/SocialMediaIcons.glb"
+        fit={2.3}
+        rotation={[0.5, 0, 0]}
         className="h-[300px] sm:h-[380px] lg:h-[480px]"
       />
     </ServiceSection>

@@ -14,7 +14,7 @@ export function GoogleAds() {
       loading={loading}
     >
       <SectionModel
-        src="/models/Google_Ads.fbx"
+        src="/models/Google_Ads.glb"
         className="h-[300px] sm:h-[380px] lg:h-[480px]"
       />
     </ServiceSection>

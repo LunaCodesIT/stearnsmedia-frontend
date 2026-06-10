@@ -16,13 +16,13 @@ export function GraphicDesign() {
       {/* Two models side by side */}
       <div className="grid grid-cols-2 gap-4">
         <SectionModel
-          src="/models/Graphics_Tablet.fbx"
+          src="/models/Graphics_Tablet.glb"
           fit={1.9}
           rotation={[0.55, -0.5, 0]}
           className="h-[220px] sm:h-[280px] lg:h-[400px]"
         />
         <SectionModel
-          src="/models/Graphics_Card_Design.fbx"
+          src="/models/Graphics_Card_Design.glb"
           rotation={[0.1, 0.4, 0]}
           className="h-[220px] sm:h-[280px] lg:h-[400px]"
         />
