@@ -13,7 +13,7 @@ import { applyModelColors } from '@/lib/model-colors';
 const SWAY_SPEED = 0.45; // rad/s of the sine phase
 const SWAY_AMPLITUDE = 0.4; // rad each way
 
-function SpinningModel({ object, fit, rotation, entranceProgress }) {
+function SpinningModel({ object, fit, rotation, yOffset = 0, entranceProgress }) {
   const spinRef = useRef(null);
   const scaleRef = useRef(null);
 
@@ -26,11 +26,12 @@ function SpinningModel({ object, fit, rotation, entranceProgress }) {
       spinRef.current.rotation.y = Math.sin(clock.getElapsedTime() * SWAY_SPEED) * SWAY_AMPLITUDE;
     }
     if (scaleRef.current) {
-      // Entrance: scale + rise driven by the section's ScrollTrigger tween
+      // Entrance: scale + rise driven by the section's ScrollTrigger tween,
+      // settling at the model's vertical alignment offset
       const p = entranceProgress.current;
       const eased = 1 - Math.pow(1 - p, 3); // cubic out
       scaleRef.current.scale.setScalar(0.55 + 0.45 * eased);
-      scaleRef.current.position.y = -0.6 * (1 - eased);
+      scaleRef.current.position.y = yOffset - 0.6 * (1 - eased);
     }
   });
 
@@ -101,7 +102,7 @@ class ModelBoundary extends Component {
 // Inline per-section 3D viewer: loads .fbx or .glb (picked by extension), fits
 // and idle-rotates the model, and plays a ScrollTrigger entrance (scale + rise)
 // as the section scrolls into view. Failures fall back to a branded shape.
-export function SectionModel({ src, fit = 1.5, rotation = [0.1, -0.3, 0], className = '' }) {
+export function SectionModel({ src, fit = 1.5, rotation = [0.1, -0.3, 0], yOffset = 0, className = '' }) {
   const wrapRef = useRef(null);
   const entranceProgress = useRef(0);
   const [lowEnd] = useState(() => isLowEnd());
@@ -163,7 +164,7 @@ export function SectionModel({ src, fit = 1.5, rotation = [0.1, -0.3, 0], classN
             polar={[-Math.PI / 5, Math.PI / 5]}
           >
             <ModelBoundary src={src}>
-              <Model src={src} fit={fit} rotation={rotation} entranceProgress={entranceProgress} />
+              <Model src={src} fit={fit} rotation={rotation} yOffset={yOffset} entranceProgress={entranceProgress} />
             </ModelBoundary>
           </PresentationControls>
         </Suspense>

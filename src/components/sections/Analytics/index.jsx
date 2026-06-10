@@ -16,6 +16,7 @@ export function Analytics() {
     >
       <SectionModel
         src="/models/Google_Analytics.glb"
+        yOffset={0.21}
         className="h-[300px] sm:h-[380px] lg:h-[480px]"
       />
     </ServiceSection>

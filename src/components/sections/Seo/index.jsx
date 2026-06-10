@@ -18,6 +18,7 @@ export function Seo() {
         src="/models/SEO.glb"
         fit={1.7}
         rotation={[0.08, -0.4, 0]}
+        yOffset={0.09}
         className="h-[300px] sm:h-[380px] lg:h-[480px]"
       />
     </ServiceSection>

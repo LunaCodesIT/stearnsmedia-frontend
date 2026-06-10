@@ -47,8 +47,9 @@ export function GraphicDesign() {
         <div className="order-2 lg:order-1">
           <SectionModel
             src="/models/Graphics_Tablet.glb"
-            fit={1.45}
+            fit={1.2}
             rotation={[0.55, -0.5, 0]}
+            yOffset={-0.25}
             className="h-[220px] sm:h-[280px] lg:h-[420px]"
           />
         </div>
