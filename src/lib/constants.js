@@ -1,6 +1,8 @@
 // ─── WordPress (READ-ONLY — the live site is never modified) ──────────────────
-export const WP_API_BASE =
-  import.meta.env.VITE_WP_API_BASE || 'https://stearnsmedia.com/wp-json/wp/v2';
+// Requests go through a same-origin proxy (/wp-api → stearnsmedia.com/wp-json)
+// because the live site sends no CORS headers: Vite's dev proxy locally, a
+// vercel.json rewrite in production.
+export const WP_API_BASE = import.meta.env.VITE_WP_API_BASE || '/wp-api/wp/v2';
 
 // Page IDs noted from https://stearnsmedia.com/wp-json/wp/v2/pages
 export const WP_PAGE_IDS = {

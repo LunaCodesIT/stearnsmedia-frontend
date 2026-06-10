@@ -279,7 +279,7 @@ export function JourneyCanvas() {
   const [lowEnd] = useState(() => isLowEnd());
 
   return (
-    <div className="fixed inset-0 z-[6] pointer-events-none" aria-hidden>
+    <div className="fixed inset-0 z-[6] pointer-events-none pe-none-deep" aria-hidden>
       <Canvas
         camera={{ position: [2.2, 0.45, 2.65], fov: 32 }}
         gl={{ antialias: true, alpha: true }}

@@ -47,4 +47,10 @@
 @layer utilities {
   .text-balance { text-wrap: balance; }
   .font-display { font-family: var(--font-family-display); }
+
+  /* R3F's internal wrapper re-enables pointer-events:auto on its own div, so a
+     plain pointer-events-none on the overlay wrapper is not enough — without
+     this the full-screen journey canvas swallows every click on the page.
+     (Globe drag-to-rotate is unaffected: it listens on `window`.) */
+  .pe-none-deep, .pe-none-deep * { pointer-events: none !important; }
 }

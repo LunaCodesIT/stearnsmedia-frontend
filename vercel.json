@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/wp-api/:path*",
+      "destination": "https://stearnsmedia.com/index.php?rest_route=/:path*"
+    },
+    {
+      "source": "/((?!assets|models|wp-api).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

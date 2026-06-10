@@ -9,7 +9,8 @@ const NAV_LINKS = [
 
 export function Navbar() {
   return (
-    <header className="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur-md border-b border-stearns-green/10">
+    // Brand-green header like the live site — the logo PNG is white text
+    <header className="fixed top-0 inset-x-0 z-50 bg-stearns-green/95 backdrop-blur-md border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <a href="#hero-section" aria-label="Stearns Media — home">
           <img src={LOGO_URL} alt="Stearns Media" className="h-7 w-auto" />
@@ -20,7 +21,7 @@ export function Navbar() {
             <a
               key={link.label}
               href={link.href}
-              className="text-sm font-medium text-stearns-ink/70 hover:text-stearns-green transition-colors duration-200"
+              className="text-sm font-medium text-white/75 hover:text-white transition-colors duration-200"
             >
               {link.label}
             </a>
@@ -29,7 +30,7 @@ export function Navbar() {
 
         <a
           href={PHONE_TEL}
-          className="inline-flex items-center gap-2 text-sm font-semibold text-stearns-green hover:text-stearns-green-mid transition-colors duration-200"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-stearns-gold transition-colors duration-200"
         >
           <Phone size={15} />
           <span className="hidden sm:inline">{PHONE_DISPLAY}</span>
