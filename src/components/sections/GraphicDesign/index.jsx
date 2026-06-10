@@ -17,6 +17,8 @@ export function GraphicDesign() {
       <div className="grid grid-cols-2 gap-4">
         <SectionModel
           src="/models/Graphics_Tablet.fbx"
+          fit={1.9}
+          rotation={[0.55, -0.5, 0]}
           className="h-[220px] sm:h-[280px] lg:h-[400px]"
         />
         <SectionModel

@@ -5,6 +5,7 @@ import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
 import * as THREE from 'three';
 import { gsap } from '@/lib/gsap';
 import { fitModelToSize, isLowEnd } from '@/lib/three-utils';
+import { applyModelColors } from '@/lib/model-colors';
 import { useScrollStore } from '@/stores/scrollStore';
 import { useGlobeJourney, JOURNEY_IDS } from '@/hooks/useGlobeJourney';
 
@@ -103,6 +104,10 @@ function GlobeModel() {
       });
       obj.material = cloned.length > 1 ? cloned : cloned[0];
     });
+    applyModelColors(root, '/models/Globe_Digital.fbx');
+    // Remember per-material baseline opacity (the holo grid is translucent at
+    // rest) so the journey fade scales it rather than overwriting it.
+    for (const m of materials) m.userData.baseOpacity = m.opacity;
     return { root, materials };
   }, [fbx]);
 
@@ -237,8 +242,8 @@ function GlobeModel() {
     if (t) { if (bloom > 0.05 || drag.current.active) t.pause(); else t.resume(); }
 
     // ── Opacity: full at rest, recedes "behind" content mid-journey ──
-    const opacity = 1 - FADE_AMOUNT * bloom;
-    for (const m of model.materials) m.opacity = opacity;
+    const fade = 1 - FADE_AMOUNT * bloom;
+    for (const m of model.materials) m.opacity = (m.userData.baseOpacity ?? 1) * fade;
   });
 
   return (

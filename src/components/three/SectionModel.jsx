@@ -5,6 +5,7 @@ import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
 import { fitModelToSize, isLowEnd } from '@/lib/three-utils';
+import { applyModelColors } from '@/lib/model-colors';
 
 const IDLE_SPIN_SPEED = 0.3; // rad/s
 
@@ -40,13 +41,21 @@ function SpinningModel({ object, fit, rotation, entranceProgress }) {
 
 function FBXModel(props) {
   const fbx = useLoader(FBXLoader, props.src);
-  const object = useMemo(() => fbx.clone(true), [fbx]);
+  const object = useMemo(() => {
+    const root = fbx.clone(true);
+    applyModelColors(root, props.src);
+    return root;
+  }, [fbx, props.src]);
   return <SpinningModel {...props} object={object} />;
 }
 
 function GLBModel(props) {
   const gltf = useLoader(GLTFLoader, props.src);
-  const object = useMemo(() => gltf.scene.clone(true), [gltf]);
+  const object = useMemo(() => {
+    const root = gltf.scene.clone(true);
+    applyModelColors(root, props.src);
+    return root;
+  }, [gltf, props.src]);
   return <SpinningModel {...props} object={object} />;
 }
 
