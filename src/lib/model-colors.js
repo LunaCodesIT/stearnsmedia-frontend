@@ -29,10 +29,11 @@ function tex(url, colorSpace) {
 const PALETTES = {
   'Globe_Digital.fbx': [
     {
-      // inner base sphere — opaque earth layer under the grid shell
+      // inner base sphere — hidden: its brick-displaced geometry bulges
+      // through the outer shell at the pole (a grid-patterned "cap"), and with
+      // the holo-grid shell hidden it contributes nothing visible anyway
       match: /continents\+holo/i,
-      props: { color: '#04100a', emissive: '#ffffff', emissiveIntensity: 0.55 },
-      textures: { emissiveMap: ['/models/globe-emission.jpg', 'srgb'] },
+      props: { visible: false },
     },
     {
       // outer continents shell — solid dark sphere with emissive night-lights
