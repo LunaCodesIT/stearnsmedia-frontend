@@ -49,9 +49,11 @@ const PALETTES = {
       textures: { emissiveMap: ['/models/globe-emission.jpg', 'srgb'] },
     },
     {
-      // holographic grid shell (procedural in the blend — approximated)
+      // holographic grid shell — hidden: its lat/long geometry piles up at the
+      // pole into a bright green cap (in the blend a procedural brick pattern
+      // masked most of it, which can't be reproduced without baking)
       match: /holo grid/i,
-      props: { color: '#000000', emissive: '#3dc63d', emissiveIntensity: 0.7, transparent: true, opacity: 0.3 },
+      props: { visible: false },
     },
     {
       // floating data cubes — bright green emission (0.08, 1.00, 0.09 linear)
