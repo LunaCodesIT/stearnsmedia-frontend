@@ -42,7 +42,7 @@ export function GraphicDesign() {
     >
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_70%_at_50%_50%,rgba(28,89,55,0.18),transparent_70%)]" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-14 lg:gap-x-20 items-center">
+      <div className="relative max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 grid grid-cols-2 lg:grid-cols-[1fr_1.3fr_1fr] gap-x-10 gap-y-14 lg:gap-x-16 items-center">
         {/* Tablet — left of the copy on desktop */}
         <div className="order-2 lg:order-1">
           <SectionModel
@@ -71,7 +71,7 @@ export function GraphicDesign() {
             )}
           </h2>
 
-          <div ref={copyRef} className="space-y-4 max-w-md mx-auto">
+          <div ref={copyRef} className="space-y-4 max-w-lg mx-auto">
             {loading ? (
               <>
                 <div className="h-4 rounded bg-white/10 animate-pulse" />
@@ -92,7 +92,7 @@ export function GraphicDesign() {
         <div className="order-3">
           <SectionModel
             src="/models/Graphics_Card_Design.glb"
-            fit={1.35}
+            fit={1.15}
             rotation={[0.1, 0.4, 0]}
             className="h-[220px] sm:h-[280px] lg:h-[420px]"
           />
