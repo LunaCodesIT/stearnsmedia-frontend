@@ -6,6 +6,7 @@ import { GoogleAds } from '@/components/sections/GoogleAds';
 import { SocialMedia } from '@/components/sections/SocialMedia';
 import { GraphicDesign } from '@/components/sections/GraphicDesign';
 import { WebsiteDesign } from '@/components/sections/WebsiteDesign';
+import { Seo } from '@/components/sections/Seo';
 
 export default function App() {
   useLenis();
@@ -19,6 +20,7 @@ export default function App() {
       <SocialMedia />
       <GraphicDesign />
       <WebsiteDesign />
+      <Seo />
     </div>
   );
 }
