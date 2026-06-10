@@ -35,18 +35,23 @@ const PALETTES = {
       textures: { emissiveMap: ['/models/globe-emission.jpg', 'srgb'] },
     },
     {
-      // outer continents shell — emissive night-lights land, transparent ocean
+      // outer continents shell — solid dark sphere with emissive night-lights
+      // land, like the product render: oceans stay dark-but-visible and a
+      // specular highlight defines the silhouette against dark backgrounds
       match: /continents/i,
-      props: { color: '#000000', emissive: '#ffffff', emissiveIntensity: 1.0, transparent: true },
-      textures: {
-        emissiveMap: ['/models/globe-emission.jpg', 'srgb'],
-        alphaMap: ['/models/globe-alpha.jpg'],
+      props: {
+        color: '#071009',
+        emissive: '#ffffff',
+        emissiveIntensity: 1.0,
+        specular: '#41604d',
+        shininess: 32,
       },
+      textures: { emissiveMap: ['/models/globe-emission.jpg', 'srgb'] },
     },
     {
       // holographic grid shell (procedural in the blend — approximated)
       match: /holo grid/i,
-      props: { color: '#000000', emissive: '#3dc63d', emissiveIntensity: 0.55, transparent: true, opacity: 0.22 },
+      props: { color: '#000000', emissive: '#3dc63d', emissiveIntensity: 0.7, transparent: true, opacity: 0.3 },
     },
     {
       // floating data cubes — bright green emission (0.08, 1.00, 0.09 linear)
@@ -86,9 +91,10 @@ export function applyModelColors(root, src) {
       if (!m) continue;
       const rule = palette.find((r) => r.match.test(m.name || ''));
       if (!rule) continue;
-      const { color, emissive, ...rest } = rule.props;
+      const { color, emissive, specular, ...rest } = rule.props;
       if (color && m.color) m.color.set(color);
       if (emissive && m.emissive) m.emissive.set(emissive);
+      if (specular && m.specular) m.specular.set(specular);
       Object.assign(m, rest);
       for (const [slot, [url, space]] of Object.entries(rule.textures || {})) {
         m[slot] = tex(url, space === 'srgb' ? THREE.SRGBColorSpace : undefined);
