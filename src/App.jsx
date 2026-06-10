@@ -7,6 +7,7 @@ import { SocialMedia } from '@/components/sections/SocialMedia';
 import { GraphicDesign } from '@/components/sections/GraphicDesign';
 import { WebsiteDesign } from '@/components/sections/WebsiteDesign';
 import { Seo } from '@/components/sections/Seo';
+import { Analytics } from '@/components/sections/Analytics';
 
 export default function App() {
   useLenis();
@@ -21,6 +22,7 @@ export default function App() {
       <GraphicDesign />
       <WebsiteDesign />
       <Seo />
+      <Analytics />
     </div>
   );
 }
