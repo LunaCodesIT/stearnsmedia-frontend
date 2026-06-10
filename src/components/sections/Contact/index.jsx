@@ -4,6 +4,7 @@ import { Loader2, Send } from 'lucide-react';
 import { gsap } from '@/lib/gsap';
 import { useContactForm } from '@/hooks/useContactForm';
 import { MaskLine } from '@/components/ui/MaskLine';
+import { BookingWidget } from '@/components/ui/BookingWidget';
 import { CAL_LINK } from '@/lib/constants';
 
 const INPUT_CLASS =
@@ -120,12 +121,12 @@ export function Contact() {
           </form>
 
           {/*
-            Cal.com booking embed.
-            NOTE FOR THE CLIENT: "stearnsmedia/discovery-call" is a placeholder
-            event slug. The client must create a "discovery-call" event type in
-            their own Cal.com account (under the "stearnsmedia" username) and
-            connect their calendar before this embed will accept bookings. The
-            slug is configurable via VITE_CAL_LINK without touching this file.
+            Booking: by default the custom BookingWidget handles scheduling
+            (SAST business-hour slots converted to the visitor's timezone,
+            delivered as a booking-request email). If the client creates an
+            event type in their Cal.com account and connects their calendar,
+            setting VITE_CAL_LINK (e.g. "stearnsmedia/discovery-call") swaps in
+            the Cal.com embed instead — no code change needed.
           */}
           <div className="bg-white/5 rounded-2xl border border-white/10 overflow-hidden min-h-[520px]">
             <div className="px-6 sm:px-8 pt-6">
@@ -136,11 +137,15 @@ export function Contact() {
                 Pick a time that suits you — no commitment.
               </p>
             </div>
-            <Cal
-              calLink={CAL_LINK}
-              style={{ width: '100%', height: '100%', minHeight: '460px' }}
-              config={{ layout: 'month_view', theme: 'dark' }}
-            />
+            {CAL_LINK ? (
+              <Cal
+                calLink={CAL_LINK}
+                style={{ width: '100%', height: '100%', minHeight: '460px' }}
+                config={{ layout: 'month_view', theme: 'dark' }}
+              />
+            ) : (
+              <BookingWidget />
+            )}
           </div>
         </div>
       </div>

@@ -33,7 +33,9 @@ export const FORMSUBMIT_TARGET =
 export const HUBSPOT_PORTAL_ID = import.meta.env.VITE_HUBSPOT_PORTAL_ID || '';
 export const HUBSPOT_FORM_GUID = import.meta.env.VITE_HUBSPOT_FORM_GUID || '';
 
-// ─── Cal.com booking ───────────────────────────────────────────────────────────
-// The client must create this event type in their Cal.com account and connect
-// their calendar before the embed will accept bookings.
-export const CAL_LINK = import.meta.env.VITE_CAL_LINK || 'stearnsmedia/discovery-call';
+// ─── Cal.com booking (optional) ────────────────────────────────────────────────
+// Empty by default: the Contact section renders the custom BookingWidget
+// (SAST slots converted to the visitor's timezone). Once the client creates an
+// event type in their Cal.com account and connects their calendar, set
+// VITE_CAL_LINK (e.g. "stearnsmedia/discovery-call") to swap in the Cal embed.
+export const CAL_LINK = import.meta.env.VITE_CAL_LINK || '';

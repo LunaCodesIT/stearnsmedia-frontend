@@ -25,11 +25,13 @@ Copy `.env.example` to `.env` and adjust as needed:
 | `VITE_FORMSUBMIT_TARGET` | `info@stearnsmedia.com` | Email address FormSubmit delivers contact-form messages to. |
 | `VITE_HUBSPOT_PORTAL_ID` | _(empty)_ | Optional HubSpot CRM lead capture. Skipped when empty. |
 | `VITE_HUBSPOT_FORM_GUID` | _(empty)_ | HubSpot form GUID, paired with the portal ID. |
-| `VITE_CAL_LINK` | `stearnsmedia/discovery-call` | Cal.com event embedded in the Contact section. |
+| `VITE_CAL_LINK` | _(empty)_ | Optional Cal.com event link. Empty = built-in booking widget. |
 
-### Updating the Cal.com event slug
+### Booking: built-in widget vs Cal.com
 
-The booking embed renders `VITE_CAL_LINK`. The client must create a **discovery-call** event type in their Cal.com account and connect their calendar; until then the embed shows a 404 message. To point at a different event, change `VITE_CAL_LINK` (e.g. `stearnsmedia/strategy-session`) in the Vercel project's environment variables and redeploy — no code change needed.
+By default the Contact section renders a **built-in booking widget**: it shows 30-minute discovery-call slots from SAST (Africa/Johannesburg) business hours (09:00–17:00, Mon–Fri), **converted to the visitor's auto-detected timezone** (changeable via a dropdown; slots that land on a different calendar day for the visitor are flagged "+1 day"). Requests are emailed via FormSubmit and pushed to HubSpot when configured. Business hours live in `src/hooks/useBookingForm.js`.
+
+To switch to Cal.com instead: the client creates an event type in their Cal.com account (e.g. **discovery-call**), connects their calendar, and sets `VITE_CAL_LINK=stearnsmedia/discovery-call` in the Vercel project's environment variables — the embed (with Cal's own native timezone handling and live availability) replaces the widget on the next deploy, no code change needed.
 
 ### Contact form delivery (FormSubmit + HubSpot)
 
