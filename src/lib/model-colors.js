@@ -80,16 +80,12 @@ const PALETTES = {
       textures: { map: ['/models/google-ads-color.jpg', 'srgb', 'noflip'] },
     },
   ],
-  'Graphics_Tablet.glb': [
-    { match: /rubber/i, props: { color: '#1a1a1a' } },
-    { match: /phong1\b/i, props: { color: '#d9ded9' } }, // screen face
-    { match: /phong7/i, props: { color: '#1c5937' } }, // brand-green accent
-    { match: /lambert/i, props: { color: '#404040' } },
-    { match: /.*/, props: { color: '#2e2e2e' } }, // graphite body
-  ],
-  'Graphics_Card_Design.glb': [
-    { match: /plastic whit/i, props: { color: '#f2f2f2' } }, // card stock
+  // Same V-Ray-style source as the old card model: black/grey base colours in
+  // the blend, so the look is assigned by material name
+  'Graphics_ID_Card.glb': [
+    { match: /plastic_white/i, props: { color: '#f2f2f2' } }, // card stock
     { match: /ribbon/i, props: { color: '#b48d1a' } }, // gold ribbon
+    { match: /dots stroke|^material$/i, props: { color: '#9aa39e' } },
     { match: /.*/, props: { color: '#1c5937' } }, // printed faces — brand green
   ],
   // A 3D Google search page. The FBX's vertex colours flattened to white in

@@ -43,13 +43,13 @@ export function GraphicDesign() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_70%_at_50%_50%,rgba(28,89,55,0.18),transparent_70%)]" />
 
       <div className="relative max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 grid grid-cols-2 lg:grid-cols-[1fr_1.3fr_1fr] gap-x-10 gap-y-14 lg:gap-x-16 items-center">
-        {/* Tablet — left of the copy on desktop */}
+        {/* Laptop — left of the copy on desktop */}
         <div className="order-2 lg:order-1">
           <SectionModel
-            src="/models/Graphics_Tablet.glb"
-            fit={1.2}
-            rotation={[0.55, -0.5, 0]}
-            yOffset={-0.25}
+            src="/models/Graphics_Laptop.glb"
+            fit={1.3}
+            rotation={[0.15, -0.35, 0]}
+            yOffset={-0.12}
             className="h-[220px] sm:h-[280px] lg:h-[420px]"
           />
         </div>
@@ -89,10 +89,10 @@ export function GraphicDesign() {
           </div>
         </div>
 
-        {/* Card design — right of the copy on desktop */}
+        {/* ID card — right of the copy on desktop */}
         <div className="order-3">
           <SectionModel
-            src="/models/Graphics_Card_Design.glb"
+            src="/models/Graphics_ID_Card.glb"
             fit={1.15}
             rotation={[0.1, 0.4, 0]}
             className="h-[220px] sm:h-[280px] lg:h-[420px]"
