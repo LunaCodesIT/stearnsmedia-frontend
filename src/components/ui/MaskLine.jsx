@@ -26,7 +26,9 @@ export function MaskLine({ children, delay = 0, className = '', scrollTriggered 
   }, [delay, scrollTriggered]);
 
   return (
-    <span className={`block overflow-hidden leading-[0.98] ${className}`}>
+    // pb extends the clip window below the baseline so descenders (g, y, p)
+    // aren't cut off; the negative margin cancels it out of the layout flow
+    <span className={`block overflow-hidden leading-[0.98] pb-[0.14em] -mb-[0.14em] ${className}`}>
       <span ref={innerRef} className="block" style={{ willChange: 'transform' }}>
         {children}
       </span>

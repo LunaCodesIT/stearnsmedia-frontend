@@ -17,14 +17,15 @@ export function GraphicDesign() {
       <div className="relative h-[300px] sm:h-[380px] lg:h-[480px]">
         <SectionModel
           src="/models/Graphic_Design_Brush.glb"
-          fit={2.1}
+          fit={1.9}
           rotation={[0.1, 0.45, 0]}
+          yOffset={-0.06}
           className="absolute inset-0"
         />
         <SectionModel
           src="/models/Graphics_Laptop.glb"
           fit={1.4}
-          rotation={[0.15, -0.35, 0]}
+          rotation={[0.12, 0.25, 0]}
           className="absolute inset-0 z-10"
         />
       </div>
