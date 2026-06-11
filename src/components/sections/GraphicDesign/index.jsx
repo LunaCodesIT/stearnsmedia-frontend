@@ -89,11 +89,11 @@ export function GraphicDesign() {
           </div>
         </div>
 
-        {/* ID card — right of the copy on desktop */}
+        {/* Paint brush — right of the copy on desktop */}
         <div className="order-3">
           <SectionModel
-            src="/models/Graphics_ID_Card.glb"
-            fit={1.15}
+            src="/models/Graphic_Design_Brush.glb"
+            fit={1.5}
             rotation={[0.1, 0.4, 0]}
             className="h-[220px] sm:h-[280px] lg:h-[420px]"
           />

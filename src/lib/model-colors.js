@@ -80,20 +80,6 @@ const PALETTES = {
       textures: { map: ['/models/google-ads-color.jpg', 'srgb', 'noflip'] },
     },
   ],
-  // "3D ID Card Mockup" (cgtrader 4696391): the source has no colours — these
-  // values match the product photos: white cards in clear plastic holders on
-  // grey lanyards. (The orange face graphics in the photos are a marketing
-  // texture that ships in no format.)
-  'Graphics_ID_Card.glb': [
-    {
-      // clear plastic badge holder
-      match: /plastic_white/i,
-      props: { color: '#ffffff', transparent: true, opacity: 0.38, roughness: 0.12, metalness: 0 },
-    },
-    { match: /ribbon/i, props: { color: '#8d9094' } }, // grey lanyard
-    { match: /dots stroke|^material$/i, props: { color: '#cfd3d6' } },
-    { match: /.*/, props: { color: '#f4f4f4', roughness: 0.6 } }, // white card stock
-  ],
   // A 3D Google search page. The FBX's vertex colours flattened to white in
   // the Blender FBX→GLB conversion, but the logo is split into per-colour
   // materials, so the official Google colours are assigned by name.
