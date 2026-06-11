@@ -18,10 +18,14 @@ import * as THREE from 'three';
 const texLoader = new THREE.TextureLoader();
 const texCache = {};
 
-function tex(url, colorSpace) {
+// opts: 'srgb' marks colour data; 'noflip' for GLB-loaded meshes whose UVs
+// follow the glTF convention (flipY=false), unlike FBX (flipY=true default)
+function tex(url, ...opts) {
   if (!texCache[url]) {
-    texCache[url] = texLoader.load(url);
-    if (colorSpace) texCache[url].colorSpace = colorSpace;
+    const t = texLoader.load(url);
+    if (opts.includes('srgb')) t.colorSpace = THREE.SRGBColorSpace;
+    if (opts.includes('noflip')) t.flipY = false;
+    texCache[url] = t;
   }
   return texCache[url];
 }
@@ -67,9 +71,15 @@ const PALETTES = {
       props: { color: '#000000', emissive: '#3dc63d', emissiveIntensity: 1.0 },
     },
   ],
-  // Single mesh + single material, so the tri-colour Google Ads logo can only
-  // be one solid colour without a re-export — Google blue reads best.
-  'Google_Ads.glb': [{ match: /.*/, props: { color: '#4285f4' } }],
+  // The original V-Ray material is black diffuse + a four-colour reflection
+  // map (from the cgtrader texture pack) — applied here as the base colour map
+  'Google_Ads.glb': [
+    {
+      match: /.*/,
+      props: { color: '#ffffff', roughness: 0.35, metalness: 0.05 },
+      textures: { map: ['/models/google-ads-color.jpg', 'srgb', 'noflip'] },
+    },
+  ],
   'Graphics_Tablet.glb': [
     { match: /rubber/i, props: { color: '#1a1a1a' } },
     { match: /phong1\b/i, props: { color: '#d9ded9' } }, // screen face
@@ -113,8 +123,8 @@ export function applyModelColors(root, src) {
       if (emissive && m.emissive) m.emissive.set(emissive);
       if (specular && m.specular) m.specular.set(specular);
       Object.assign(m, rest);
-      for (const [slot, [url, space]] of Object.entries(rule.textures || {})) {
-        m[slot] = tex(url, space === 'srgb' ? THREE.SRGBColorSpace : undefined);
+      for (const [slot, [url, ...opts]] of Object.entries(rule.textures || {})) {
+        m[slot] = tex(url, ...opts);
       }
       m.needsUpdate = true;
     }
