@@ -7,6 +7,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
 import { fitModelToSize, isLowEnd } from '@/lib/three-utils';
 import { applyModelColors } from '@/lib/model-colors';
+import { useNearViewport } from '@/hooks/useNearViewport';
 
 // Gentle oscillation instead of a full spin: most section models are flat,
 // sign-like shapes (logos, boards) that show a blank back for half of every
@@ -107,6 +108,8 @@ export function SectionModel({ src, fit = 1.5, rotation = [0.1, -0.3, 0], yOffse
   const wrapRef = useRef(null);
   const entranceProgress = useRef(0);
   const [lowEnd] = useState(() => isLowEnd());
+  // Mount the WebGL canvas only near the viewport (context-limit + GPU)
+  const near = useNearViewport(wrapRef);
 
   useEffect(() => {
     const el = wrapRef.current;
@@ -145,6 +148,7 @@ export function SectionModel({ src, fit = 1.5, rotation = [0.1, -0.3, 0], yOffse
 
   return (
     <div ref={wrapRef} className={`opacity-0 ${className}`} aria-hidden>
+      {near && (
       <Canvas
         camera={{ position: [2.2, 0.45, 2.65], fov: 32 }}
         gl={{ antialias: true, alpha: true }}
@@ -170,6 +174,7 @@ export function SectionModel({ src, fit = 1.5, rotation = [0.1, -0.3, 0], yOffse
           </PresentationControls>
         </Suspense>
       </Canvas>
+      )}
     </div>
   );
 }

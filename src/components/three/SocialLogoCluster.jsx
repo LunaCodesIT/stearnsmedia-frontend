@@ -4,6 +4,7 @@ import { SafeEnvironment } from '@/components/three/SafeEnvironment';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { gsap } from '@/lib/gsap';
 import { fitModelToSize, isLowEnd } from '@/lib/three-utils';
+import { useNearViewport } from '@/hooks/useNearViewport';
 import { applyModelColors } from '@/lib/model-colors';
 
 // Floating cluster of social logos. Each logo gets its own animation
@@ -107,6 +108,8 @@ export function SocialLogoCluster({ className = '' }) {
   const wrapRef = useRef(null);
   const entranceProgress = useRef(0);
   const [lowEnd] = useState(() => isLowEnd());
+  // Mount the WebGL canvas only near the viewport (context-limit + GPU)
+  const near = useNearViewport(wrapRef);
 
   useEffect(() => {
     const el = wrapRef.current;
@@ -141,6 +144,7 @@ export function SocialLogoCluster({ className = '' }) {
 
   return (
     <div ref={wrapRef} className={`opacity-0 ${className}`} aria-hidden>
+      {near && (
       <Canvas
         camera={{ position: [0, 0.1, 3.3], fov: 32 }}
         gl={{ antialias: true, alpha: true }}
@@ -157,6 +161,7 @@ export function SocialLogoCluster({ className = '' }) {
           </ModelBoundary>
         </Suspense>
       </Canvas>
+      )}
     </div>
   );
 }
