@@ -16,9 +16,9 @@ export function SocialMedia() {
       heroBackground
     >
       <SectionModel
-        src="/models/SocialMediaIcons.glb"
-        fit={2.3}
-        rotation={[0.5, 0, 0]}
+        src="/models/Facebook_Logo.glb"
+        fit={1.5}
+        rotation={[0.1, 0.3, 0]}
         className="h-[300px] sm:h-[380px] lg:h-[480px]"
       />
     </ServiceSection>

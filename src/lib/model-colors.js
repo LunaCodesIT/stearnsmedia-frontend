@@ -80,6 +80,11 @@ const PALETTES = {
       textures: { map: ['/models/google-ads-color.jpg', 'srgb', 'noflip'] },
     },
   ],
+  // Facebook logo — the FBX ships grey; official brand colours by material
+  'Facebook_Logo.glb': [
+    { match: /material\.010/i, props: { color: '#1877f2' } }, // blue tile
+    { match: /.*/, props: { color: '#ffffff' } }, // white "f"
+  ],
   // A 3D Google search page. The FBX's vertex colours flattened to white in
   // the Blender FBX→GLB conversion, but the logo is split into per-colour
   // materials, so the official Google colours are assigned by name.
