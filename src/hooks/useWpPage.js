@@ -8,12 +8,18 @@ function decodeEntities(str) {
   return el.value;
 }
 
+// The live WP copy occasionally misspells the brand (e.g. "Stern Media" on
+// the Graphic Design page) — normalise every variant to "Stearns Media"
+function fixBrandName(text) {
+  return text.replace(/\b(?:Stern|Sterns|Stearn|Strearns?)(?=\s+Media\b)/gi, 'Stearns');
+}
+
 function extractParagraphs(html, max = 3) {
   const doc = new DOMParser().parseFromString(html, 'text/html');
   const seen = new Set();
   const out = [];
   for (const p of doc.querySelectorAll('p, h2, h3')) {
-    const text = p.textContent.replace(/\s+/g, ' ').trim();
+    const text = fixBrandName(p.textContent.replace(/\s+/g, ' ').trim());
     if (text.length < 40 || seen.has(text)) continue; // skip stubs/duplicates
     seen.add(text);
     out.push(text);
@@ -39,7 +45,7 @@ export function useWpPage(fetchPage, { paragraphCount = 3 } = {}) {
       .then((page) => {
         if (cancelled) return;
         setState({
-          title: decodeEntities(page.title?.rendered || ''),
+          title: fixBrandName(decodeEntities(page.title?.rendered || '')),
           paragraphs: extractParagraphs(page.content?.rendered || '', paragraphCount),
           loading: false,
           error: null,
