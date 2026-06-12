@@ -15,7 +15,7 @@
     {
       "type": "VEC3",
       "componentType": 5120,
-      "count": 2964,
+      "count": 3581,
       "normalized": true,
       "byteOffset": 0,
       "bufferView": 1
@@ -23,7 +23,7 @@
     {
       "type": "VEC3",
       "componentType": 5122,
-      "count": 2964,
+      "count": 3581,
       "max": [
         32175,
         5884,
@@ -37,6 +37,14 @@
       "normalized": true,
       "byteOffset": 0,
       "bufferView": 2
+    },
+    {
+      "type": "VEC2",
+      "componentType": 5123,
+      "count": 3581,
+      "normalized": true,
+      "byteOffset": 0,
+      "bufferView": 3
     }
   ],
   "bufferViews": [
@@ -49,7 +57,7 @@
         "EXT_meshopt_compression": {
           "buffer": 0,
           "byteOffset": 0,
-          "byteLength": 6189,
+          "byteLength": 6721,
           "mode": "TRIANGLES",
           "byteStride": 2,
           "count": 17772
@@ -59,35 +67,52 @@
     {
       "buffer": 1,
       "byteOffset": 35544,
-      "byteLength": 11856,
+      "byteLength": 14324,
       "target": 34962,
       "byteStride": 4,
       "extensions": {
         "EXT_meshopt_compression": {
           "buffer": 0,
-          "byteOffset": 6192,
-          "byteLength": 5215,
+          "byteOffset": 6724,
+          "byteLength": 6204,
           "mode": "ATTRIBUTES",
           "filter": "OCTAHEDRAL",
           "byteStride": 4,
-          "count": 2964
+          "count": 3581
         }
       }
     },
     {
       "buffer": 1,
-      "byteOffset": 47400,
-      "byteLength": 23712,
+      "byteOffset": 49868,
+      "byteLength": 28648,
       "target": 34962,
       "byteStride": 8,
       "extensions": {
         "EXT_meshopt_compression": {
           "buffer": 0,
-          "byteOffset": 11408,
-          "byteLength": 13374,
+          "byteOffset": 12928,
+          "byteLength": 16353,
           "mode": "ATTRIBUTES",
           "byteStride": 8,
-          "count": 2964
+          "count": 3581
+        }
+      }
+    },
+    {
+      "buffer": 1,
+      "byteOffset": 78516,
+      "byteLength": 14324,
+      "target": 34962,
+      "byteStride": 4,
+      "extensions": {
+        "EXT_meshopt_compression": {
+          "buffer": 0,
+          "byteOffset": 29284,
+          "byteLength": 11066,
+          "mode": "ATTRIBUTES",
+          "byteStride": 4,
+          "count": 3581
         }
       }
     }
@@ -95,10 +120,10 @@
   "buffers": [
     {
       "uri": "Google_Ads.glb.bin",
-      "byteLength": 24784
+      "byteLength": 40352
     },
     {
-      "byteLength": 71112,
+      "byteLength": 92840,
       "extensions": {
         "EXT_meshopt_compression": {
           "fallback": true
@@ -129,7 +154,8 @@
         {
           "attributes": {
             "NORMAL": 1,
-            "POSITION": 2
+            "POSITION": 2,
+            "TEXCOORD_0": 3
           },
           "mode": 4,
           "material": 0,
@@ -158,13 +184,119 @@
         0.05182571037943291
       ],
       "mesh": 0
+    },
+    {
+      "name": "Cam_Light_Set:VRayDomeLight_1",
+      "translation": [
+        -22.502586364746094,
+        -7.910168170928955,
+        0
+      ]
+    },
+    {
+      "name": "Cam_Light_Set:VRayLight_1",
+      "translation": [
+        -5.058539390563965,
+        14.577075004577637,
+        -16.583951950073242
+      ],
+      "rotation": [
+        -0.3596053719520569,
+        -0.07275524735450745,
+        0.1844729781150818,
+        0.9117896556854248
+      ],
+      "scale": [
+        6.692241191864014,
+        2.282086133956909,
+        6.165896415710449
+      ]
+    },
+    {
+      "name": "Cam_Light_Set:VRayLight_2",
+      "translation": [
+        21.068288803100586,
+        0.0007496540783904493,
+        -8.532999038696289
+      ],
+      "rotation": [
+        0,
+        0,
+        -0.7071068286895752,
+        0.7071068286895752
+      ],
+      "scale": [
+        4.892770767211914,
+        2.28208589553833,
+        7.5261993408203125
+      ]
+    },
+    {
+      "name": "Cam_Light_Set:VRayLight_3",
+      "translation": [
+        -19.187910079956055,
+        -11.818970680236816,
+        -8.532999992370605
+      ],
+      "rotation": [
+        0,
+        0,
+        0.9142096042633057,
+        0.4052416682243347
+      ],
+      "scale": [
+        4.892770767211914,
+        2.282086133956909,
+        7.5261993408203125
+      ]
+    },
+    {
+      "name": "Cam_Light_Set:VRayLight_4",
+      "translation": [
+        16.55673599243164,
+        14.011453628540039,
+        -16.583951950073242
+      ],
+      "rotation": [
+        -0.2269934117794037,
+        0.10378969460725784,
+        -0.402669221162796,
+        0.8806583881378174
+      ],
+      "scale": [
+        6.692241191864014,
+        2.28208589553833,
+        6.165895462036133
+      ]
+    },
+    {
+      "name": "Cam_Light_Set:Light",
+      "rotation": [
+        0.7071068286895752,
+        0,
+        0,
+        0.7071068286895752
+      ],
+      "scale": [
+        0.009999999776482582,
+        0.009999999776482582,
+        0.009999999776482582
+      ],
+      "children": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
     }
   ],
   "scenes": [
     {
       "name": "Scene",
       "nodes": [
-        0
+        0,
+        6
       ]
     }
   ],
