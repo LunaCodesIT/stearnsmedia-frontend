@@ -1,10 +1,11 @@
 import { Component, Suspense } from 'react';
 import { Environment } from '@react-three/drei';
 
-// drei's <Environment> fetches an HDR from a CDN at runtime. Isolated in its
-// own Suspense + error boundary so a slow or failed fetch never delays or
-// crashes the canvas it lights — the scene's direct lights carry the look
-// until (or without) the IBL.
+// Environment lighting from a SELF-HOSTED HDR (public/hdr/city.hdr) — drei's
+// presets fetch from a third-party CDN at runtime, which proved flaky in
+// production (models rendered differently or slowly when the CDN stalled).
+// Still isolated in Suspense + an error boundary so even a local hiccup never
+// delays or crashes the canvas — the direct lights carry the look without it.
 class EnvBoundary extends Component {
   state = { crashed: false };
   static getDerivedStateFromError() {
@@ -18,11 +19,11 @@ class EnvBoundary extends Component {
   }
 }
 
-export function SafeEnvironment({ preset = 'city' }) {
+export function SafeEnvironment() {
   return (
     <EnvBoundary>
       <Suspense fallback={null}>
-        <Environment preset={preset} />
+        <Environment files="/hdr/city.hdr" />
       </Suspense>
     </EnvBoundary>
   );

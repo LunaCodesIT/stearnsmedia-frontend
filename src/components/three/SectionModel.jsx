@@ -160,7 +160,7 @@ export function SectionModel({ src, fit = 1.5, rotation = [0.1, -0.3, 0], yOffse
           <directionalLight position={[2, 8, 5]} intensity={1.9} />
           <pointLight position={[4, 1, 2]} intensity={1.4} color="#1c5937" />
           <pointLight position={[-4, 3, 1]} intensity={1.0} color="#b48d1a" />
-          <SafeEnvironment preset="city" />
+          <SafeEnvironment />
           <PresentationControls
             global={false}
             cursor

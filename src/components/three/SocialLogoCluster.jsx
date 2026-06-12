@@ -155,7 +155,7 @@ export function SocialLogoCluster({ className = '' }) {
           <ambientLight intensity={0.7} />
           <directionalLight position={[2, 6, 5]} intensity={1.7} />
           <pointLight position={[-4, 2, 2]} intensity={0.9} color="#b48d1a" />
-          <SafeEnvironment preset="city" />
+          <SafeEnvironment />
           <ModelBoundary>
             <LogoCluster entranceProgress={entranceProgress} />
           </ModelBoundary>

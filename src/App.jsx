@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useLenis } from '@/hooks/useLenis';
+import { usePreloadModels } from '@/hooks/usePreloadModels';
 import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/sections/Footer';
 import { HomePage } from '@/pages/HomePage';
@@ -17,6 +18,7 @@ function ScrollToTop() {
 
 export default function App() {
   useLenis();
+  usePreloadModels();
 
   return (
     <div className="min-h-screen bg-stearns-dark">
