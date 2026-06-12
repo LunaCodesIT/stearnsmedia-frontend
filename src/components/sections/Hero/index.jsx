@@ -51,7 +51,7 @@ export function Hero() {
       <div
         id="hero-globe-anchor"
         aria-hidden
-        className="absolute inset-0 md:left-[42%] top-auto md:top-0 h-[42%] md:h-full bottom-[-0.5rem] md:bottom-0 pointer-events-none z-10"
+        className="absolute inset-0 md:left-[42%] top-auto md:top-0 h-[42%] md:h-full bottom-[-0.5rem] md:bottom-0 md:translate-y-5 pointer-events-none z-10"
       />
 
       {/* Text block — left side / top half on mobile */}
