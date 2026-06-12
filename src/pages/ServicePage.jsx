@@ -85,7 +85,7 @@ export function ServicePage() {
 
       {/* Content from the WP service page */}
       <section className="relative bg-stearns-dark pb-20 lg:pb-28">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           {loading && (
             <div className="space-y-4 pt-6">
               <div className="h-4 rounded bg-white/10 animate-pulse" />
@@ -110,7 +110,7 @@ export function ServicePage() {
             }
             if (block.type === 'list') {
               return (
-                <ul key={i} className="space-y-2 my-5">
+                <ul key={i} className="my-5 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-2">
                   {block.items.map((item) => (
                     <li key={item} className="flex items-start gap-3 text-white/65">
                       <Check size={16} className="text-stearns-green-light mt-1 shrink-0" />
@@ -118,6 +118,16 @@ export function ServicePage() {
                     </li>
                   ))}
                 </ul>
+              );
+            }
+            if (block.type === 'price') {
+              return (
+                <p key={i} className="mt-5 flex items-baseline gap-3">
+                  <span className="text-stearns-green-light font-display font-bold text-2xl">
+                    R{block.current}
+                  </span>
+                  <span className="text-white/35 line-through text-sm">R{block.original}</span>
+                </p>
               );
             }
             if (block.type === 'table') {

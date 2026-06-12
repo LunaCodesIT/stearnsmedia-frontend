@@ -32,6 +32,20 @@ function extractBlocks(html) {
     const isHeading = el.tagName !== 'P';
     if (!isHeading && text.length < 30) return; // stubs/buttons
     seen.add(text);
+    // WooCommerce product blocks render as "ROld Original price was… RNew
+    // Current price is… Add to cart" — turn them into clean price blocks
+    const priceMatch = text.match(/Original price was:\s*R\s?([\d.,]+?)\.?\s*R.*?Current price is:\s*R\s?([\d.,]+?)\.(?:\s|Add|$)/i);
+    if (!isHeading && priceMatch) {
+      blocks.push({ type: 'price', original: priceMatch[1], current: priceMatch[2] });
+      return;
+    }
+    if (!isHeading && /add to cart/i.test(text)) return; // Woo leftovers
+    // Some WP paragraphs are really lists with inline "•" bullets — split them
+    if (!isHeading && (text.match(/•/g) || []).length >= 2) {
+      const items = text.split('•').map((t) => t.trim()).filter((t) => t.length > 2);
+      blocks.push({ type: 'list', items });
+      return;
+    }
     blocks.push({ type: isHeading ? 'heading' : 'p', text });
   });
   return blocks;
