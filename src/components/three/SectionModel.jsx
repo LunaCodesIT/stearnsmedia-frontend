@@ -5,7 +5,7 @@ import { SafeEnvironment } from '@/components/three/SafeEnvironment';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
-import { fitModelToSize, isLowEnd } from '@/lib/three-utils';
+import { fitModelToSize, isLowEnd, withMeshopt } from '@/lib/three-utils';
 import { applyModelColors } from '@/lib/model-colors';
 import { useNearViewport } from '@/hooks/useNearViewport';
 
@@ -59,7 +59,7 @@ function FBXModel(props) {
 }
 
 function GLBModel(props) {
-  const gltf = useLoader(GLTFLoader, props.src);
+  const gltf = useLoader(GLTFLoader, props.src, withMeshopt);
   const object = useMemo(() => {
     const root = gltf.scene.clone(true);
     applyModelColors(root, props.src);

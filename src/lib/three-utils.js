@@ -1,4 +1,11 @@
 import * as THREE from 'three';
+import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
+
+// The GLBs are Meshopt-compressed (glTF-Transform); GLTFLoader needs the
+// decoder registered. Pass to useLoader as the third argument.
+export function withMeshopt(loader) {
+  loader.setMeshoptDecoder(MeshoptDecoder);
+}
 
 // Reset → centre → scale-to-fit → re-centre. Mutates `model` in place so its
 // bounding box is centred on the origin and its largest dimension equals `targetSize`.

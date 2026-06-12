@@ -3,7 +3,7 @@ import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { SafeEnvironment } from '@/components/three/SafeEnvironment';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { gsap } from '@/lib/gsap';
-import { fitModelToSize, isLowEnd } from '@/lib/three-utils';
+import { fitModelToSize, isLowEnd, withMeshopt } from '@/lib/three-utils';
 import { useNearViewport } from '@/hooks/useNearViewport';
 import { applyModelColors } from '@/lib/model-colors';
 
@@ -26,7 +26,7 @@ const ROCK_AMP = 0.16;
 const BOB_AMP = 0.05;
 
 function LogoCluster({ entranceProgress }) {
-  const gltfs = useLoader(GLTFLoader, LOGOS.map((l) => l.src));
+  const gltfs = useLoader(GLTFLoader, LOGOS.map((l) => l.src), withMeshopt);
   const refs = useRef([]);
 
   const models = useMemo(
