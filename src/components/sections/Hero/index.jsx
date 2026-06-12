@@ -46,10 +46,12 @@ export function Hero() {
         scroll-driven journey (see JourneyCanvas) — kept purely so the journey
         can measure exactly where to start from.
       */}
+      {/* On mobile the anchor hugs the bottom (and dips slightly below it) so
+          the globe clears the "Get a Quote" CTA above */}
       <div
         id="hero-globe-anchor"
         aria-hidden
-        className="absolute inset-0 md:left-[42%] top-auto md:top-0 h-1/2 md:h-full pointer-events-none z-10"
+        className="absolute inset-0 md:left-[42%] top-auto md:top-0 h-[40%] md:h-full bottom-[-3rem] md:bottom-0 pointer-events-none z-10"
       />
 
       {/* Text block — left side / top half on mobile */}
