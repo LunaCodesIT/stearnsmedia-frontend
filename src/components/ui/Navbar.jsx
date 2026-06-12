@@ -1,11 +1,12 @@
+import { Link } from 'react-router-dom';
 import { Phone } from 'lucide-react';
 import { useScrolled } from '@/hooks/useScrolled';
 import { LOGO_URL, PHONE_DISPLAY, PHONE_TEL } from '@/lib/constants';
 
 const NAV_LINKS = [
-  { label: 'Home', href: '#hero-section' },
-  { label: 'Services', href: '#google-ads-section' },
-  { label: 'Contact Us', href: '#contact' },
+  { label: 'Home', to: '/' },
+  { label: 'Packages', to: '/packages' },
+  { label: 'Contact Us', to: '/#contact' },
 ];
 
 export function Navbar() {
@@ -22,19 +23,19 @@ export function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <a href="#hero-section" aria-label="Stearns Media — home">
+        <Link to="/" aria-label="Stearns Media — home">
           <img src={LOGO_URL} alt="Stearns Media" className="h-7 w-auto" />
-        </a>
+        </Link>
 
         <nav className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map((link) => (
-            <a
+            <Link
               key={link.label}
-              href={link.href}
+              to={link.to}
               className="text-sm font-medium text-white/70 hover:text-stearns-green-light transition-colors duration-200"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 

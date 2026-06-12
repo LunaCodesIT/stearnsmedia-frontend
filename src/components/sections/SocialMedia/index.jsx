@@ -14,6 +14,7 @@ export function SocialMedia() {
       loading={loading}
       reverse
       heroBackground
+      to="/services/social-media"
     >
       <SocialLogoCluster className="h-[300px] sm:h-[380px] lg:h-[480px]" />
     </ServiceSection>

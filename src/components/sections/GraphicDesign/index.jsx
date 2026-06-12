@@ -12,6 +12,7 @@ export function GraphicDesign() {
       title={title || 'Graphic Design'}
       paragraphs={paragraphs}
       loading={loading}
+      to="/services/graphic-design"
     >
       {/* Layered composition: paint brushes behind, laptop in front */}
       <div className="relative h-[300px] sm:h-[380px] lg:h-[480px]">

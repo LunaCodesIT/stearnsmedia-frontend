@@ -13,6 +13,7 @@ export function Analytics() {
       paragraphs={paragraphs}
       loading={loading}
       heroBackground
+      to="/services/analytics-conversion-tracking"
     >
       <SectionModel
         src="/models/Google_Analytics.glb"

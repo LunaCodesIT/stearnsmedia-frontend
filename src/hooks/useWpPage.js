@@ -10,8 +10,14 @@ function decodeEntities(str) {
 
 // The live WP copy occasionally misspells the brand (e.g. "Stern Media" on
 // the Graphic Design page) — normalise every variant to "Stearns Media"
-function fixBrandName(text) {
+export function fixBrandName(text) {
   return text.replace(/\b(?:Stern|Sterns|Stearn|Strearns?)(?=\s+Media\b)/gi, 'Stearns');
+}
+
+export function decodeWpTitle(title) {
+  const el = document.createElement('textarea');
+  el.innerHTML = title || '';
+  return fixBrandName(el.value);
 }
 
 function extractParagraphs(html, max = 3) {

@@ -56,3 +56,18 @@
      (Globe drag-to-rotate is unaffected: it listens on `window`.) */
   .pe-none-deep, .pe-none-deep * { pointer-events: none !important; }
 }
+
+/* WP/TablePress tables rendered on service pages */
+.wp-table table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+.wp-table th, .wp-table td {
+  padding: 0.65rem 0.9rem;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.7);
+}
+.wp-table thead th, .wp-table tr:first-child th {
+  background: rgba(28, 89, 55, 0.45);
+  color: #fff;
+  font-weight: 600;
+}
+.wp-table tr:nth-child(even) td { background: rgba(255, 255, 255, 0.03); }

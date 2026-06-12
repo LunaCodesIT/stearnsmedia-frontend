@@ -7,6 +7,7 @@ export const WP_API_BASE = import.meta.env.VITE_WP_API_BASE || '/wp-api/wp/v2';
 // Page IDs noted from https://stearnsmedia.com/wp-json/wp/v2/pages
 export const WP_PAGE_IDS = {
   home: 5083,
+  services: 5098,
   googleAds: 4899,
   seo: 5128,
   socialMedia: 5225,
@@ -15,6 +16,57 @@ export const WP_PAGE_IDS = {
   analytics: 5260,
   contact: 5279,
 };
+
+// ─── Service registry ──────────────────────────────────────────────────────────
+// Drives the per-service routes (/services/:slug), the Packages page, and the
+// service-page 3D models. `model` mirrors each homepage section's setup;
+// 'cluster' and 'design-duo' are special compositions.
+// `tagline` mirrors the one-liners on the WP Services overview page — used as
+// a fallback when a service's own page can't be fetched.
+export const SERVICES = [
+  {
+    slug: 'google-ads',
+    name: 'Google Ads',
+    wpId: 4899,
+    tagline: 'High-intent advertising across Search, Display, YouTube and Shopping to drive leads and sales.',
+    model: { src: '/models/Google_Ads.glb' },
+  },
+  {
+    slug: 'social-media',
+    name: 'Social Media',
+    wpId: 5225,
+    tagline: 'Strategic content and paid campaigns that grow your brand and generate leads.',
+    model: 'cluster',
+  },
+  {
+    slug: 'graphic-design',
+    name: 'Graphic Design',
+    wpId: 5220,
+    tagline: 'Professional visuals and branding that elevate your business and make a lasting impression.',
+    model: 'design-duo',
+  },
+  {
+    slug: 'website-design',
+    name: 'Website Design & Development',
+    wpId: 5160,
+    tagline: 'Conversion-focused websites designed to turn visitors into customers.',
+    model: { src: '/models/Globe_Digital.fbx', fit: 1.5 },
+  },
+  {
+    slug: 'seo',
+    name: 'SEO',
+    wpId: 5128,
+    tagline: 'Improve your rankings, increase organic traffic, and generate long-term growth.',
+    model: { src: '/models/SEO.glb', fit: 1.7, rotation: [0.08, -0.4, 0] },
+  },
+  {
+    slug: 'analytics-conversion-tracking',
+    name: 'Analytics & Conversion Tracking',
+    wpId: 5260,
+    tagline: 'Track performance and optimise for maximum ROI.',
+    model: { src: '/models/Google_Analytics.glb', rotation: [0.1, 0.3, 0] },
+  },
+];
 
 // ─── Brand ─────────────────────────────────────────────────────────────────────
 export const LOGO_URL =

@@ -13,6 +13,7 @@ export function Seo() {
       paragraphs={paragraphs}
       loading={loading}
       reverse
+      to="/services/seo"
     >
       <SectionModel
         src="/models/SEO.glb"

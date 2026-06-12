@@ -59,6 +59,16 @@ Standard Vite static deployment — `vercel` CLI or Git integration, no special 
 
 Set the environment variables from `.env.example` in the Vercel dashboard for anything that differs from the defaults.
 
+## Routes
+
+| Route | Page |
+| --- | --- |
+| `/` | Homepage (all sections + scroll journey) |
+| `/packages` | Packages overview — per-service package copy aggregated from the WP service pages |
+| `/services/:slug` | Service detail pages (full WP content + the section's 3D model). Slugs: `google-ads`, `social-media`, `graphic-design`, `website-design`, `seo`, `analytics-conversion-tracking` |
+
+The service registry (slug ↔ WP page ID ↔ 3D model) lives in `src/lib/constants.js` (`SERVICES`). Each route sets its own `<title>` and meta description via `useDocumentMeta`. `vercel.json`'s SPA fallback makes the routes directly addressable.
+
 ## Architecture
 
 Strict separation of concerns — each layer is independently replaceable, and no section's files are touched by changes to another section:

@@ -15,6 +15,7 @@ export function getPage(id) {
   return get(`/pages/${id}?_fields=id,slug,title,content,excerpt`);
 }
 
+export const getServicesOverviewPage = () => getPage(WP_PAGE_IDS.services);
 export const getGoogleAdsPage = () => getPage(WP_PAGE_IDS.googleAds);
 export const getSeoPage = () => getPage(WP_PAGE_IDS.seo);
 export const getSocialMediaPage = () => getPage(WP_PAGE_IDS.socialMedia);

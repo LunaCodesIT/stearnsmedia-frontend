@@ -1,10 +1,11 @@
+import { Link } from 'react-router-dom';
 import { Phone } from 'lucide-react';
 import { LOGO_URL, PHONE_DISPLAY, PHONE_TEL } from '@/lib/constants';
 
 const FOOTER_LINKS = [
-  { label: 'Home', href: '#hero-section' },
-  { label: 'Services', href: '#google-ads-section' },
-  { label: 'Contact Us', href: '#contact' },
+  { label: 'Home', to: '/' },
+  { label: 'Packages', to: '/packages' },
+  { label: 'Contact Us', to: '/#contact' },
 ];
 
 export function Footer() {
@@ -13,23 +14,23 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Logo — served from the live site's media library */}
-          <a href="#hero-section" aria-label="Stearns Media — back to top">
+          <Link to="/" aria-label="Stearns Media — back to top">
             <img
               src={LOGO_URL}
               alt="Stearns Media"
               className="h-8 w-auto brightness-0 invert"
             />
-          </a>
+          </Link>
 
           <nav className="flex items-center gap-8">
             {FOOTER_LINKS.map((link) => (
-              <a
+              <Link
                 key={link.label}
-                href={link.href}
+                to={link.to}
                 className="text-sm font-medium text-white/60 hover:text-white transition-colors duration-200"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
 

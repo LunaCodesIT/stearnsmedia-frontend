@@ -12,6 +12,7 @@ export function GoogleAds() {
       title={title || 'Google Ads'}
       paragraphs={paragraphs}
       loading={loading}
+      to="/services/google-ads"
     >
       <SectionModel
         src="/models/Google_Ads.glb"

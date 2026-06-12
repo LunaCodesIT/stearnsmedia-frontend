@@ -1,33 +1,33 @@
+import { useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { useLenis } from '@/hooks/useLenis';
 import { Navbar } from '@/components/ui/Navbar';
-import { JourneyCanvas } from '@/components/three/JourneyCanvas';
-import { Hero } from '@/components/sections/Hero';
-import { GoogleAds } from '@/components/sections/GoogleAds';
-import { SocialMedia } from '@/components/sections/SocialMedia';
-import { GraphicDesign } from '@/components/sections/GraphicDesign';
-import { WebsiteDesign } from '@/components/sections/WebsiteDesign';
-import { Seo } from '@/components/sections/Seo';
-import { Analytics } from '@/components/sections/Analytics';
-import { About } from '@/components/sections/About';
-import { Contact } from '@/components/sections/Contact';
 import { Footer } from '@/components/sections/Footer';
+import { HomePage } from '@/pages/HomePage';
+import { ServicePage } from '@/pages/ServicePage';
+import { PackagesPage } from '@/pages/PackagesPage';
+
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (!hash) window.scrollTo(0, 0);
+  }, [pathname, hash]);
+  return null;
+}
 
 export default function App() {
   useLenis();
 
   return (
     <div className="min-h-screen bg-stearns-dark">
+      <ScrollToTop />
       <Navbar />
-      <JourneyCanvas />
-      <Hero />
-      <GoogleAds />
-      <SocialMedia />
-      <GraphicDesign />
-      <WebsiteDesign />
-      <Seo />
-      <Analytics />
-      <About />
-      <Contact />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/packages" element={<PackagesPage />} />
+        <Route path="/services/:slug" element={<ServicePage />} />
+        <Route path="*" element={<HomePage />} />
+      </Routes>
       <Footer />
     </div>
   );
