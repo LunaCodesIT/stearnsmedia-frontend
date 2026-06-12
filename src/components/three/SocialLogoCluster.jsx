@@ -8,16 +8,16 @@ import { applyModelColors } from '@/lib/model-colors';
 
 // Floating cluster of social logos. Each logo gets its own animation
 // personality so the group never moves in lockstep:
-//   sway — gentle yaw oscillation        spin — continuous full rotation
+//   sway — yaw oscillation (amplitude/speed/phase vary per logo)
 //   rock — z-axis rocking with a slight yaw drift
 // All of them bob vertically on different phases/speeds.
 const LOGOS = [
   { src: '/models/Twitter_Logo.glb', pos: [0, -0.06, 0.15], size: 0.68, anim: 'sway', phase: 2.2, speed: 0.65, bob: 0.9 },
   { src: '/models/Facebook_Logo.glb', pos: [-0.8, 0.48, 0], size: 0.55, anim: 'sway', phase: 0.0, speed: 0.45, bob: 0.7 },
-  { src: '/models/Instagram_Logo.glb', pos: [0.82, 0.53, -0.1], size: 0.6, anim: 'spin', phase: 1.3, speed: 0.5, bob: 1.1 },
+  { src: '/models/Instagram_Logo.glb', pos: [0.7, 0.53, -0.1], size: 0.6, anim: 'sway', phase: 1.3, speed: 0.4, amp: 0.5, bob: 1.1 },
   { src: '/models/Pinterest_Logo.glb', pos: [0, 0.64, -0.05], size: 0.48, anim: 'sway', phase: 4.1, speed: 0.8, bob: 1.3 },
   { src: '/models/Whatsapp_Logo.glb', pos: [-0.8, -0.5, 0], size: 0.55, anim: 'rock', phase: 0.7, speed: 0.7, bob: 0.8 },
-  { src: '/models/TikTok_Logo.glb', pos: [0.82, -0.48, 0.05], size: 0.55, anim: 'spin', phase: 3.1, speed: -0.4, bob: 1.0 },
+  { src: '/models/TikTok_Logo.glb', pos: [0.74, -0.48, 0.05], size: 0.55, anim: 'sway', phase: 3.1, speed: -0.55, amp: 0.45, bob: 1.0 },
 ];
 
 const SWAY_AMP = 0.35;
@@ -56,12 +56,10 @@ function LogoCluster({ entranceProgress }) {
         cfg.pos[2]
       );
 
-      if (cfg.anim === 'spin') {
-        g.rotation.set(0.08, t * cfg.speed + cfg.phase, 0);
-      } else if (cfg.anim === 'rock') {
+      if (cfg.anim === 'rock') {
         g.rotation.set(0.08, Math.sin(t * 0.3 + cfg.phase) * 0.15, Math.sin(t * cfg.speed + cfg.phase) * ROCK_AMP);
       } else {
-        g.rotation.set(0.08, Math.sin(t * cfg.speed + cfg.phase) * SWAY_AMP, 0);
+        g.rotation.set(0.08, Math.sin(t * cfg.speed + cfg.phase) * (cfg.amp || SWAY_AMP), 0);
       }
     });
   });
