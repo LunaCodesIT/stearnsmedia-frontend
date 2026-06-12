@@ -38,7 +38,7 @@ export function SocialMedia() {
     <section
       ref={sectionRef}
       id="social-media-section"
-      className="relative w-full bg-stearns-dark pt-20 lg:pt-28 overflow-hidden"
+      className="relative w-full bg-stearns-dark pt-20 lg:pt-28"
     >
       {/* Same black-to-green wash as the hero */}
       <div className="absolute inset-0 bg-gradient-to-br from-stearns-dark via-[#0f2e1c] to-stearns-dark" />
@@ -79,8 +79,11 @@ export function SocialMedia() {
         </div>
       </div>
 
-      {/* Icon marquee — full-bleed strip along the section's bottom */}
-      <IconMarqueeCanvas className="relative w-full h-[140px] sm:h-[180px] lg:h-[220px] mt-10 lg:mt-14" />
+      {/* Icon marquee — straddles the boundary with the next section,
+          acting as a separator strip (translated down by half its height) */}
+      <div className="relative z-20 translate-y-1/2 mt-4 lg:mt-6">
+        <IconMarqueeCanvas className="w-full h-[140px] sm:h-[180px] lg:h-[220px]" />
+      </div>
     </section>
   );
 }

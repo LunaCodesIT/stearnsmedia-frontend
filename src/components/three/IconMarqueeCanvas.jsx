@@ -21,6 +21,19 @@ function MarqueeRow() {
 
   const { template, span } = useMemo(() => {
     const root = gltf.scene.clone(true);
+    // The model packs several icon rows stacked in depth (coloured 3D icons,
+    // grey duplicates, flat "2D" variants, oversized circles). The coloured
+    // row lives in the z ≈ -4 cluster — keep only that one.
+    root.updateMatrixWorld(true);
+    const toRemove = [];
+    const scratch = new THREE.Box3();
+    const center = new THREE.Vector3();
+    root.traverse((obj) => {
+      if (!obj.isMesh) return;
+      scratch.setFromObject(obj).getCenter(center);
+      if (center.z < -4.5 || center.z > -3.5) toRemove.push(obj);
+    });
+    for (const obj of toRemove) obj.parent?.remove(obj);
     const box = new THREE.Box3().setFromObject(root);
     root.position.sub(box.getCenter(new THREE.Vector3()));
     const size = box.getSize(new THREE.Vector3());
@@ -47,7 +60,9 @@ function MarqueeRow() {
   });
 
   return (
-    <group rotation={[TILT, 0, 0]}>
+    // π yaw: the model's icon faces point away from +z, so the row is turned
+    // around to face the camera
+    <group rotation={[TILT, Math.PI, 0]}>
       {clones.map((c, i) => (
         <group key={i} ref={(el) => { groupRefs.current[i] = el; }}>
           <primitive object={c} />
