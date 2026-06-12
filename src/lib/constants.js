@@ -21,6 +21,9 @@ export const WP_PAGE_IDS = {
 // Drives the per-service routes (/services/:slug), the Packages page, and the
 // service-page 3D models. `model` mirrors each homepage section's setup;
 // 'cluster' and 'design-duo' are special compositions.
+// Website Design's pricing and detail content live on its two WP child pages
+export const WEBSITE_DESIGN_CHILD_IDS = [5155, 5201]; // Business Websites, eCommerce Website
+
 // `tagline` mirrors the one-liners on the WP Services overview page — used as
 // a fallback when a service's own page can't be fetched.
 export const SERVICES = [

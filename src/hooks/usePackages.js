@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fixBrandName } from '@/hooks/useWpPage';
 import { getPage, getServicesOverviewPage } from '@/services/wordpress';
-import { SERVICES } from '@/lib/constants';
-
-// Website Design's pricing lives on its two WP child pages
-const WEBSITE_DESIGN_CHILDREN = [5155, 5201]; // Business Websites, eCommerce Website
+import { SERVICES, WEBSITE_DESIGN_CHILD_IDS } from '@/lib/constants';
 
 const PRICE_ROW = /price|contract option/i;
 
@@ -59,7 +56,7 @@ export function usePackages() {
     let cancelled = false;
     const fetches = SERVICES.map((s) =>
       s.slug === 'website-design'
-        ? Promise.all(WEBSITE_DESIGN_CHILDREN.map((id) => getPage(id)))
+        ? Promise.all(WEBSITE_DESIGN_CHILD_IDS.map((id) => getPage(id)))
         : getPage(s.wpId)
     );
     // allSettled + tagline fallback: the WP host rate-limits request bursts,

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, Suspense, Component } from 'react';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
-import { Environment } from '@react-three/drei';
+import { SafeEnvironment } from '@/components/three/SafeEnvironment';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { gsap } from '@/lib/gsap';
 import { fitModelToSize, isLowEnd } from '@/lib/three-utils';
@@ -151,7 +151,7 @@ export function SocialLogoCluster({ className = '' }) {
           <ambientLight intensity={0.7} />
           <directionalLight position={[2, 6, 5]} intensity={1.7} />
           <pointLight position={[-4, 2, 2]} intensity={0.9} color="#b48d1a" />
-          <Environment preset="city" />
+          <SafeEnvironment preset="city" />
           <ModelBoundary>
             <LogoCluster entranceProgress={entranceProgress} />
           </ModelBoundary>

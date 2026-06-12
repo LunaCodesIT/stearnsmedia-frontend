@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, Suspense, Component } from 'react';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
-import { Environment, PresentationControls } from '@react-three/drei';
+import { PresentationControls } from '@react-three/drei';
+import { SafeEnvironment } from '@/components/three/SafeEnvironment';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
@@ -70,7 +71,7 @@ function GLBModel(props) {
 function FallbackShape() {
   const ref = useRef(null);
   useFrame((_, delta) => {
-    if (ref.current) ref.current.rotation.y += delta * IDLE_SPIN_SPEED;
+    if (ref.current) ref.current.rotation.y += delta * 0.3;
   });
   return (
     <group ref={ref}>
@@ -155,7 +156,7 @@ export function SectionModel({ src, fit = 1.5, rotation = [0.1, -0.3, 0], yOffse
           <directionalLight position={[2, 8, 5]} intensity={1.9} />
           <pointLight position={[4, 1, 2]} intensity={1.4} color="#1c5937" />
           <pointLight position={[-4, 3, 1]} intensity={1.0} color="#b48d1a" />
-          <Environment preset="city" />
+          <SafeEnvironment preset="city" />
           <PresentationControls
             global={false}
             cursor

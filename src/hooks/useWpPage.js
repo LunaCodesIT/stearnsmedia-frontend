@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { refreshScrollTriggersSoon } from '@/lib/gsap';
 
 // Strip an Elementor-rendered WP page down to clean copy: decoded title plus
 // the first few meaningful paragraphs of body text.
@@ -56,6 +57,8 @@ export function useWpPage(fetchPage, { paragraphCount = 3 } = {}) {
           loading: false,
           error: null,
         });
+        // section heights change once copy lands — re-measure scroll triggers
+        refreshScrollTriggersSoon();
       })
       .catch((error) => {
         if (cancelled) return;

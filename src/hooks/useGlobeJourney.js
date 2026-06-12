@@ -79,6 +79,11 @@ export function useGlobeJourney() {
           setGlobeLanded(window.scrollY >= useScrollStore.getState().journeyEndScrollY);
         },
       });
+      // Sync the store to the real progress immediately — after remounting
+      // (route changes) or reloading mid-page, stale store values would
+      // otherwise place the globe wrongly until the first scroll event.
+      setJourneyProgress(trigger.progress);
+      setGlobeLanded(window.scrollY >= useScrollStore.getState().journeyEndScrollY);
     });
 
     return () => {

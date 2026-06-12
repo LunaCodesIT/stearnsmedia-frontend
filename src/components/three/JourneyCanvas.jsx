@@ -1,6 +1,5 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, Suspense, Component } from 'react';
 import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber';
-import { Environment } from '@react-three/drei';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
 import * as THREE from 'three';
 import { gsap } from '@/lib/gsap';
@@ -292,11 +291,13 @@ export function JourneyCanvas() {
         style={{ width: '100%', height: '100%' }}
       >
         <Suspense fallback={null}>
+          {/* No <Environment>: the globe is all Phong materials (FBX), which
+              ignore IBL — the CDN HDR fetch only delayed first paint and could
+              kill the whole canvas when it failed */}
           <ambientLight intensity={0.65} />
           <directionalLight position={[2, 8, 5]} intensity={1.9} castShadow />
           <pointLight position={[4, 1, 2]} intensity={1.6} color="#1c5937" />
           <pointLight position={[-4, 3, 1]} intensity={1.1} color="#b48d1a" />
-          <Environment preset="city" />
           <JourneyScene />
         </Suspense>
       </Canvas>

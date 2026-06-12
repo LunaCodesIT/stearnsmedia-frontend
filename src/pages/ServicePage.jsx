@@ -85,7 +85,7 @@ export function ServicePage() {
 
       {/* Content from the WP service page */}
       <section className="relative bg-stearns-dark pb-20 lg:pb-28">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {loading && (
             <div className="space-y-4 pt-6">
               <div className="h-4 rounded bg-white/10 animate-pulse" />

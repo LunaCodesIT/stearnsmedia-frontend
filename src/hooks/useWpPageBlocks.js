@@ -6,7 +6,7 @@ const SKIP_TEXT = new Set(['get a quote', 'home', 'get in touch', 'contact us'])
 // Structured version of useWpPage for full pages: walks the rendered WP
 // content and returns ordered blocks — headings, paragraphs, lists, and
 // tables (TablePress output kept as sanitised HTML).
-function extractBlocks(html) {
+export function extractBlocks(html) {
   const doc = new DOMParser().parseFromString(html, 'text/html');
   // strip scripts/styles before reading anything
   doc.querySelectorAll('script, style').forEach((el) => el.remove());
