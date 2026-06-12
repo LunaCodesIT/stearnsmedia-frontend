@@ -80,10 +80,34 @@ const PALETTES = {
       textures: { map: ['/models/google-ads-color.jpg', 'srgb', 'noflip'] },
     },
   ],
-  // Facebook logo — the FBX ships grey; official brand colours by material
+  // Social logos — the FBX files ship grey; official brand colours assigned
+  // by material (probed: biggest/backmost mesh = tile, frontmost = glyph)
   'Facebook_Logo.glb': [
     { match: /material\.010/i, props: { color: '#1877f2' } }, // blue tile
     { match: /.*/, props: { color: '#ffffff' } }, // white "f"
+  ],
+  'Instagram_Logo.glb': [
+    { match: /material\.005/i, props: { color: '#d6249f' } }, // gradient tile (approx.)
+    { match: /.*/, props: { color: '#ffffff' } }, // camera glyph
+  ],
+  'Pinterest_Logo.glb': [
+    { match: /material\.017/i, props: { color: '#e60023' } }, // red tile
+    { match: /material\.016/i, props: { color: '#ffffff' } }, // white circle
+    { match: /.*/, props: { color: '#e60023' } }, // red "P"
+  ],
+  'TikTok_Logo.glb': [
+    { match: /material\.003/i, props: { color: '#101010' } }, // black tile
+    { match: /material\.001/i, props: { color: '#25f4ee' } }, // cyan offset (back)
+    { match: /material\.002/i, props: { color: '#ffffff' } }, // white note (front)
+    { match: /.*/, props: { color: '#fe2c55' } }, // pink offset (middle)
+  ],
+  'Twitter_Logo.glb': [
+    { match: /material\.012/i, props: { color: '#1da1f2' } }, // blue tile
+    { match: /.*/, props: { color: '#ffffff' } }, // bird
+  ],
+  'Whatsapp_Logo.glb': [
+    { match: /material\.019/i, props: { color: '#25d366' } }, // green tile
+    { match: /.*/, props: { color: '#ffffff' } }, // phone glyph
   ],
   // A 3D Google search page. The FBX's vertex colours flattened to white in
   // the Blender FBX→GLB conversion, but the logo is split into per-colour
