@@ -7,7 +7,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
 import { fitModelToSize, isLowEnd, withMeshopt } from '@/lib/three-utils';
 import { applyModelColors } from '@/lib/model-colors';
-import { useNearViewport } from '@/hooks/useNearViewport';
+import { useCanvasGate } from '@/hooks/useCanvasGate';
 
 // Gentle oscillation instead of a full spin: most section models are flat,
 // sign-like shapes (logos, boards) that show a blank back for half of every
@@ -108,8 +108,9 @@ export function SectionModel({ src, fit = 1.5, rotation = [0.1, -0.3, 0], yOffse
   const wrapRef = useRef(null);
   const entranceProgress = useRef(0);
   const [lowEnd] = useState(() => isLowEnd());
-  // Mount the WebGL canvas only near the viewport (context-limit + GPU)
-  const near = useNearViewport(wrapRef);
+  // Mount the canvas once on approach (context created once, never destroyed);
+  // run its render loop only while actually on screen.
+  const { mounted, visible } = useCanvasGate(wrapRef);
 
   useEffect(() => {
     const el = wrapRef.current;
@@ -148,8 +149,9 @@ export function SectionModel({ src, fit = 1.5, rotation = [0.1, -0.3, 0], yOffse
 
   return (
     <div ref={wrapRef} className={`opacity-0 ${className}`} aria-hidden>
-      {near && (
+      {mounted && (
       <Canvas
+        frameloop={visible ? 'always' : 'never'}
         camera={{ position: [2.2, 0.45, 2.65], fov: 32 }}
         gl={{ antialias: true, alpha: true }}
         dpr={lowEnd ? [1, 1] : [1, 1.75]}

@@ -7,6 +7,13 @@ export function withMeshopt(loader) {
   loader.setMeshoptDecoder(MeshoptDecoder);
 }
 
+// Kick off the Meshopt WASM compile immediately (it's a one-time ~tens-of-ms
+// cost). Called at app start so the decoder is ready before any model loads —
+// otherwise the first GLB blocks on WASM init, which read as "slow to appear".
+export function warmMeshoptDecoder() {
+  return MeshoptDecoder.ready;
+}
+
 // Reset → centre → scale-to-fit → re-centre. Mutates `model` in place so its
 // bounding box is centred on the origin and its largest dimension equals `targetSize`.
 export function fitModelToSize(model, targetSize) {

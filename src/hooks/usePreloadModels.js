@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useLoader } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
-import { withMeshopt } from '@/lib/three-utils';
+import { withMeshopt, warmMeshoptDecoder } from '@/lib/three-utils';
 
 const MODEL_URLS = [
   '/models/Globe_Digital.fbx',
@@ -24,6 +24,10 @@ const MODEL_URLS = [
 // model is already parsed and appears instantly.
 export function usePreloadModels() {
   useEffect(() => {
+    // Start the Meshopt WASM compile right away so it's ready before the first
+    // GLB needs decoding (the models require EXT_meshopt_compression)
+    warmMeshoptDecoder();
+
     const idle =
       typeof requestIdleCallback === 'function'
         ? requestIdleCallback
